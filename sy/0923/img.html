@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        img {
+            width:110px; 
+            height:100px;
+        }
+    </style>
 </head>
 <body>
-    <!-- / root 최상단 경로 -->
+    <!-- / root 최상단 경로 (httpd.conf 파일에 설정된 root 경로)-->
     <!-- . 현재 위치 -->
     <!-- .. 현재 부모 위치 -->
-    <img src="../images/잠만보.png" alt="잠만보png">
+    <img src="../images/잠만보.png" alt="잠만보png" >
     <img src="/images/먹고자.png" alt="먹고자png">
-    <!-- 절대경로 : 보안상의 이유로 내 컴퓨터 정보를 로컬로 표시 안됨 (C://..) -->
+    <!-- 절대경로 : 보안상의 이유로 내 컴퓨터 정보를 로컬로 표시 안됨 (C://.. 불가) -->
+    <!-- alt : alternative 이미지가 지원되지 않을 때 글자로 대체 -->
 </body>
 </html>
