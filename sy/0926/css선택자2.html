@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* parent의 바로 자식요소만 선택 */
+        /* '>'를 이용해 자식 요소만 선택 */
+        /* #parent>.child {
+            border: 1px dotted navy;
+        } */
+
+        /* '공백'으로 모든 후손 요소를 선택 */
+        /* #parent .child {
+            border: 1px solid pink;
+        } */
+
+        /* 형제요소들 찾기 */
+        /* '+' : 다음형제 찾기(나 다음) , '~' : 모든 형제 찾기(나 포함x) */
+        #seconds+div {
+            border: 1px solid orange;
+        }
+        #seconds~* {
+            border: 1px solid orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div class="child">자식1</div>
+        <div class="child" id="seconds">자식2
+            <div class="child">후손1</div>
+            <div class="child">후손2</div>
+            <div class="child">후손3</div>
+        </div>
+        <div class="child">자식3</div>
+        <p>자식3.5</p>
+        <div class="child">자식4</div>
+
+    </div>
+</body>
+
+</html>
