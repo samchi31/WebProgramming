@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        #id_disp{
+            border: 1px solid purple;
+            padding :  20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <!-- <input type="submit" > -->
+        <input id="id_btn" type="button" value="버튼입니다" onclick="f_click();">
+    </form>
+    <hr>
+    <div id="id_disp" onclick="f_divClick();">
+        여기를 눌러서 요소 사이 컨텐츠 정보를 읽어봅시다
+    </div>
+<script>
+    // 스크립트 영역 
+    // html 문서 아무데나 작성 가능
+
+    // 변수키워드 변수명 = 값;
+    // 함수키워드 함수명(){}
+    // 선언식함수 선언법
+    function f_click(){
+        // alert("나 눌림");
+        console.log(id_btn.id);
+        console.log(id_btn.type);
+        console.log(id_btn.value);
+        console.log(id_btn.onclick);
+        id_btn.value = "button으로 change";
+    }
+
+    function f_divClick(){
+        //innerHTML을 사용해서 요소사이 정보를 읽음
+        alert(id_disp.innerHTML);
+        id_disp.innerHTML = "변경할거예요...";
+    }
+</script>
+</body>
+</html>

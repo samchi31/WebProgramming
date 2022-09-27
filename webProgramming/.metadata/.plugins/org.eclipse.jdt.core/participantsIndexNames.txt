@@ -1,3 +1,0 @@
-INDEX VERSION 1.131
-C:\Users\PC-07\eclipse-workspace\webProgramming1\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2173563838.index
-\webPro\src
