@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- radio 버튼 사용 시 name 값을 공통으로 하여 그룹핑시킬 필요가 있다 -->
+    남자<input type="radio" name="gender" value="male">
+    여자<input type="radio" name="gender" value="female">
+    외계인<input type="radio" name="gender" value="alien" checked>
+    <input type="button" value="선택버튼" onclick="f_radio()">
+
+    <hr>
+    <input type="checkbox" name="hobby" value="java">자바
+    <input type="checkbox" name="hobby" value="javascript">자바스크립트
+    <input type="checkbox" name="hobby" value="html">HTML
+    <input type="checkbox" name="hobby" value="css">CSS
+    <hr>
+    <input type="button" value="버튼" onclick="f_checked()">
+    <script>
+        //document 객체 - getElementsByName() : 선택자 역할을 하는 메소드
+        function f_radio() {
+            var radioVal = document.getElementsByName("gender");
+            console.log(radioVal);
+
+            for (var i = 0; i < radioVal.length; i++) {
+                // console.log(radioVal[i].checked);
+                if (radioVal[i].checked) {
+                    alert(radioVal[i].value);
+                }
+            }
+        }
+        
+        function f_checked() {
+            // var checkVal = document.getElementsByName("hobby");
+            var checkVal = document.querySelectorAll("input[type=checkbox]");
+            // console.log(checkVal);
+            var chkStr = "";
+
+            for (var i = 0; i < checkVal.length; i++) {
+                // console.log(checkVal[i].checked);
+                if (checkVal[i].checked) {
+                    chkStr += checkVal[i].value + "  ";
+                    // console.log(checkVal[i].value);
+                }
+            }
+            console.log(chkStr);
+        }
+    </script>
+</body>
+
+</html>
