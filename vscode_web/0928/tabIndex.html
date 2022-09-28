@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp{
+            width: 200px;
+            height: 100px;
+            border: 4px dotted red;
+        }
+    </style>
+</head>
+<body>
+    <!-- tabindex 값으로 탭 키 눌럿을 때 포커스 순서 정할 수 있다 -->
+    <table border="1">
+        <tr>
+            <td>이름 <input value="" tabindex="1" placeholder="이름을 입력하세요"></td>
+            <td>별명 <input value="" tabindex="-1"></td>
+        </tr>
+        <tr>
+            <td>나이 <input value="" tabindex="2" autofocus></td>
+            <td>주소 <input value="" tabindex="4"></td>
+        </tr>
+        <tr>
+            <td>전화 <input value="" tabindex="3"></td>
+            <td>모바일 <input value="" tabindex="6"></td>
+        </tr>
+        <tr>
+            <td colspan="2"> 메모
+                <textarea cols="50" rows="5" ></textarea>
+            </td>
+        </tr>
+    </table>
+    <!-- tabindex 를 쓰면 탭 포커스가 아닌 요소도 탭 키를 눌러서 포커스 가능 -->
+    <!-- textbox 처럼 내용 입력 가능하게 => contenteditable -->
+    <div id="id_disp" tabindex="0" contenteditable onkeydown="f_keydown()"></div>
+
+
+    <script>
+        function f_keydown(){
+            alert(event.keyCode + event.key);
+        }
+    </script>
+</body>
+</html>

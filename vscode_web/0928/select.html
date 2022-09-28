@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 선택상자 또는 콤보박스 -->
+    <!-- multiple : 리스트박스 여러개 선택가능-->
+    <select name="" id="" multiple size="5" onchange="f_select(this)">
+        <!-- <option value="0">사는곳</option> -->
+        <option value="daejeon">대전</option>
+        <option value="sejong">세종</option>
+        <option value="newyork" selected>뉴욕</option>
+        <option value="africa">아프리카</option>
+    </select>
+
+
+    <script>
+        function f_select(p_this) {
+            // console.log(p_this.value);
+            // console.log(p_this.options[2]);
+            var v_options = p_this.options;
+            var mySel = [];
+            for (var i = 0; i < v_options.length; i++) {
+                // console.log(v_options[i].value + " : " + v_options[i].selected);
+                if(v_options[i].selected){
+                    mySel.push(v_options[i].value);
+                }
+            }
+            alert(mySel)
+        }
+    </script>
+</body>
+
+</html>

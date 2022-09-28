@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            color: yellow;
+            background-color: black;
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        최대 3개까지만 체크 <br>
+        4개째 선택시 3개 초과 메시지를 출력 <br>
+        체크는 되지않게 <br>
+        다른항목 해제 시 다시 항목 선택 가능 <br>
+    </div>
+
+    <input type="checkbox" name="hobby" value="java" onclick="f_hobby(this)">자바
+    <input type="checkbox" name="hobby" value="javascript" onclick="f_hobby(this)">자바스크립트
+    <input type="checkbox" name="hobby" value="html" onclick="f_hobby(this)">HTML
+    <input type="checkbox" name="hobby" value="css" onclick="f_hobby(this)">CSS
+    <input type="checkbox" name="hobby" value="sql" onclick="f_hobby(this)">SQL
+
+    <script>
+        // function f_hobby(p_this) {
+        //     // console.log(p_this.value);
+        //     // console.log(p_this.checked);
+        //     var cnt = 0;
+        //     var checkVal = document.querySelectorAll("input[type=checkbox]");
+        //     for (var i = 0; i < checkVal.length; i++) {
+        //         if (checkVal[i].checked) {
+        //             cnt++;
+        //         }
+        //     }
+        //     if (cnt > 3) {
+        //         alert("3개 초과");
+        //         p_this.checked = false;
+        //     }
+        // }
+
+        var chkcnt = 0;
+        function f_hobby(p_this) {
+            if (p_this.checked) {
+                chkcnt++;
+            } else {
+                chkcnt--;
+            }
+            if (chkcnt > 3) {
+                alert("3개 초과");
+                p_this.checked = false;
+            }
+        }
+    </script>
+</body>
+
+</html>

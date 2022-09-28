@@ -9,7 +9,17 @@
     <input type="file" accept=".jpg, .png, .gif">    <br>
 
     <!-- 브라우저마다 모양이 달라서 디자이너들은 사용을 꺼리는 요소들 -->
-    <input type="date">    <br>
-    <input type="color">    
+    <input type="date" id="id_date" onchange="f_date(this)">    <br>
+    <input type="color" onchange="f_color(this)"> 
+
+<script>
+    function f_date(p_date){
+        // alert(p_date.value)    // this를 통해 접근
+        alert(id_date.value);    // 요소의 id 로 접근
+    }
+    function f_color(p_this){
+        console.log(p_this.value);
+    }
+</script>
 </body>
 </html>

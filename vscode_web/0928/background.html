@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            height: 500px;
+            position: relative; /* 투명설정시 부모요소의 상태를 변경하고 기준으로 사용 */
+        }
+        #content {
+            height: 100%; /* 높이 속성에서 %단위를 단독 사용할 경우 적용되지 않음 */
+            border: 3px dotted red;
+            /* url(경로) position/size repeat attachment */
+            /* background: url(../images/먹고자.png) left top/100px no-repeat; */
+            /* opacity: 0.3; */
+        }
+        /* 배경만 투명하게 */
+        #content::before {
+            content: ""; /* 없으면 사진 안나온다 */
+            background-image: url(../images/먹고자.png) , url(../images/잠만보.png);
+            background-repeat: no-repeat;
+            background-size: 100px 100px, 300px;
+            background-position: left top, center center;
+            opacity: 0.3; 
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id = "content">
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+            피카츄라이츄파이리꼬부기버터풀야도란
+        </div>    
+    </div>
+</body>
+</html>
