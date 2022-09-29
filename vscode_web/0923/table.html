@@ -12,9 +12,20 @@
             /* 한번에 표시하기 style을 꼭 포함해야한다 */
             border : 2px solid pink;
             width: 70%;
+            /* border-collapse: collapse; */
+            border-spacing: 10px;
+            caption-side: bottom;
+            empty-cells: hide;
+            table-layout: fixed;
         }
         td, th {
             border: 2px solid blue;
+        }
+        .a{
+            background-color: gold;
+        }
+        tr:nth-child(/* odd */ even){
+            background-color: green;
         }
     </style>
 </head>
@@ -35,10 +46,11 @@
     </table> -->
     <!-- table>tr*4>td*4 -->
     <table>
-        <tr>
-            <th>1행 1열</th>
+        <caption>테이블제목</caption>
+        <tr class="a">
+            <th><!-- 1행 1열 --></th>
             <th>1행 2열</th>
-            <th>1행 3열</th>
+            <th id="three">1행 3열</th>
             <th>1행 4열</th>
         </tr>
         <tr>
@@ -47,7 +59,7 @@
             <td>2행 3열</td>
             <td rowspan="3">2행 4열</td>
         </tr>
-        <tr>
+        <tr class="a">
             <!-- <td>3행 1열</td> -->
             <td>3행 2열</td>
             <td>3행 3열</td>

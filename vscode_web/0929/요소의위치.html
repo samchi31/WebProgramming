@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #parent{
+            /* absolute의 부모가 되기 위한 자격 => static한 상태가 아닐 것*/
+            position: relative;
+            left: 300px;
+            top: 100px;
+        }
+        .child{
+            border-style: solid;
+            /* default, 방향속성의 적용을 받지않음 */
+            /* position: static; */
+            /* 정적 위치에서 방향 속석ㅇ의 적용을 받음 */
+            /* position: relative; */
+            /* 부모의 위치에서 방향속성의 적용을 받음 */
+            position: absolute;
+        }
+        .roze{
+            background-color: pink;
+            left: 10px;
+            top: 50px;
+        }
+        .jeni{
+            background-color: hotpink;
+            left: 30px;
+            /* z-index: 1; */
+            top: 70px;
+        }
+        .risa{
+            background-color: palevioletred;
+            left: 50px;
+            top: 90px;
+        }
+        .jisu{
+            background-color: salmon;
+            left: 70px;
+            top: 110px;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div class="child roze">로제</div>
+        <div class="child jeni">제니</div>
+        <div class="child risa">리사</div>
+        <div class="child jisu">지수</div>
+    </div>
+    <input type="button"  value="누름" onclick="f_move()">
+
+    <script>
+        var v_arr = document.getElementsByClassName("child");
+        console.log(v_arr[1]);
+        function f_move(){
+            // alert(v_arr[1].style.left);
+            // inline스타일로 정의되어 있지 않을 때 - 처리
+            if(!v_arr[1].style.left){
+                v_arr[1].style.left = "30px";
+            }
+            v_arr[1].style.left = parseInt(v_arr[1].style.left) +10 +"px";
+            setTimeout(f_move,1000);
+        }
+    </script>
+</body>
+</html>

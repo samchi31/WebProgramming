@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 600px;
+            border: 4px solid blue;
+            font-size: 0; /* html문서에서 div 사이 엔터 키 값도 공백으로 들어가서 폰트 사이즈를 없앰*/
+        }
+        .e_div{
+            width: 200px;
+            height: 300px;
+            border: 1px solid salmon;
+            /* 블록요소를 한줄에 나란히 배치할 때 */
+            display: inline-block;
+            /* 요소의 사이즈에 border와 padding을 포함시켜 계산 */
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div class="e_div">A</div>
+        <div class="e_div">B</div>
+        <div class="e_div">C</div>
+        <div class="e_div">D</div>
+    </div>
+
+    
+</body>
+</html>

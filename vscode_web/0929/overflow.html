@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img{
+            width: 100px;
+            height: 100px;
+            display: block;
+            float: left;
+        }
+        #parent{
+            position: relative; /* child의 부모 조건을 적용 */
+            top: 100px;
+            left: 100px;
+            border: 10px inset olive;
+            width: 100px;
+            height: 100px;
+            /* 부모영역 안 컨텐츠의 용량이 초과되었을 때 제어 */
+            overflow: hidden;
+        }
+        .child{
+            position: absolute;
+            width: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+        <div id="id_chd1" class="child" style="left: 0px; z-index: 1;">
+            <img src="../images/우파_공식_일러스트.png" alt="">
+            <img src="../images/꼬부기_공식_일러스트.png" alt="">
+            <img src="../images/루기아_공식_일러스트.png" alt="">
+            <img src="../images/먹고자.png" alt="">
+        </div>
+        <div id="id_chd2" class="child" style="left: 400px;">
+            <img src="../images/치렁_공식_일러스트.png" alt="">
+            <img src="../images/잠만보.png" alt="">
+            <img src="../images/팽도리.png" alt="">
+            <img src="../images/피츄_공식_일러스트.png" alt="">
+        </div>
+    </div>
+    <script>
+        var v_chd1 = document.getElementById("id_chd1");
+        // var v_chd1 = document.querySelector("#id_chd1");
+        var v_chd2 = document.getElementById("id_chd2");
+        // alert(v_chd1.style.left);
+        //inline 스타일로 초기화가 필요하지만 직접 inline 스타일을 정의했음
+        var v_mvWidth = 1;
+        function f_move(){
+            v_chd1.style.left = parseInt(v_chd1.style.left) - v_mvWidth + "px";
+            setTimeout(f_move,20);
+        }
+        f_move();
+        /* 
+        document.getElementsByClassName
+        document.getElementsByName
+        document.getElementsByTagName
+        document.querySelector("tag") // 첫번째 요소만 가져옴
+        document.querySelector("#id")
+        document.querySelector(".class")
+        document.querySelectorAll() //배열 형태의 데이터 
+        */
+    </script>
+</body>
+
+</html>

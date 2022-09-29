@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        /* #id_disp {
+            /* background-color: navy;
+            color: white; */
+        } */
+    </style>
+</head>
+
+<body>
+    <h3>개발자가 알아야 할 css는 많지 않음</h3>
+    <div id="id_disp" style="background-color: navy; color: white;
+                        display: block;">
+        <h2>하하하하하</h2>
+    </div>
+    <input type="button" value="눌렁" onclick="f_click()">
+
+    <script>
+        var v_colors = ["blue", "red", "orange", "green", "purple", "olive"];
+
+        function f_click() {
+            // 스크립트로 제어할 수 있는 스타일 정보는 태그안의 inline만 가능
+            // alert(id_disp.style.display);
+            // id_disp.style.backgroundColor = "red";
+            // if (id_disp.style.display == "none") {
+            //     id_disp.style.display = "block";
+            // } else {
+            //     id_disp.style.display = "none";
+            // }
+            var ranclr = v_colors[Math.floor(Math.random() * v_colors.length)];
+            console.log(ranclr);
+            id_disp.style.color = ranclr;
+            setTimeout(f_click, 1000);
+        }
+    </script>
+</body>
+
+</html>
