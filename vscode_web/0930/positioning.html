@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        #wrapper{
+            position: relative;
+        }
+        #child{
+            border: 1px solid lavender;            
+            height: 500px;
+            top: 50px;
+            left: 50px;
+            
+        }
+        #child::after{
+            position: absolute;
+            content: "";
+            background-image: url(../images/wallpaper.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% 100vh;
+            opacity: 0.3;
+            top: 0px;
+            left: 0px;
+            right: 0px;
+            bottom: 0px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        이미지 위 글자
+    </div>    
+    <div id="wrapper">
+        <div id="child">
+            글자글자글자
+        </div>
+    </div>
+</body>
+</html>

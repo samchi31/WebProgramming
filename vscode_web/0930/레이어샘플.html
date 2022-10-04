@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        img {
+            width: 100px;
+            height: 100px;
+        }
+        #wrapper{
+            border: 2px solid skyblue;
+            width: 220px;
+            height: 500px;
+            position: relative;
+        }
+        .btn{
+            position: absolute;
+            left: 100px;
+        }
+        .panel{
+            position: absolute;
+            top: 30px;
+        }
+    </style>
+    <script>
+        // html 코드 전부 로딩 후 실행
+        var v_panel;
+        var v_text;
+        window.onload = function(){
+            v_panel =document.querySelectorAll(".panel");
+            v_text = document.querySelector("#id_text");
+            v_text.value = "1/" + v_panel.length;
+        }
+        
+        var v_layerIndex = 0;
+        function f_next(){
+            v_panel[v_layerIndex].style.zIndex = 1;
+            v_layerIndex++;
+            if(v_layerIndex > 2){
+                v_layerIndex =0;
+            }
+            v_panel[v_layerIndex].style.zIndex = 999;
+            v_text.value = (v_layerIndex + 1) +"/" + v_panel.length;
+        }
+        function f_prev(){
+            v_panel[v_layerIndex].style.zIndex = 1;
+            v_layerIndex--;
+            if(v_layerIndex < 0){
+                v_layerIndex = 2;
+            }
+            v_panel[v_layerIndex].style.zIndex = 999;
+            v_text.value = (v_layerIndex + 1) +"/" + v_panel.length;
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="btn">
+            <input type="button" value="&lt;" onclick="f_prev()">
+            <input id="id_text" value="" size="1">
+            <input type="button" value="&gt;" onclick="f_next()">
+        </div>
+        <div class="panel" style="z-index: 999;">
+            <table border="1" >
+                <tr>
+                    <td><img src="../images/우파_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/팽도리.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/치렁_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/먹고자.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/우파_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/치렁_공식_일러스트.png" alt=""></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel" style="z-index: 888;">
+            <table border="1">
+                <tr>
+                    <td><img src="../images/꼬부기_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/잠만보.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/루기아_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/피츄_공식_일러스트.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/팽도리.png" alt=""></td>
+                    <td><img src="../images/우파_공식_일러스트.png" alt=""></td>
+                </tr>
+            </table>
+        </div>
+        <div class="panel">
+            <table border="1">
+                <tr>
+                    <td><img src="../images/잠만보.png" alt=""></td>
+                    <td><img src="../images/먹고자.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/피츄_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/우파_공식_일러스트.png" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="../images/치렁_공식_일러스트.png" alt=""></td>
+                    <td><img src="../images/팽도리.png" alt=""></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
