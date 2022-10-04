@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid sandybrown;
+        }
+
+        #id_test{
+            border: 2px solid mediumturquoise;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div id="id_test"></div>
+</body>
+<script>
+    function f_test() {
+        var sum = 0;
+
+        // for (var i = 1; i <= 10; i++) {
+        //     sum += i;
+        // }
+
+        // for (var i = 1; i <= 200; i++) {
+        //     if (i % 2 != 0) {
+        //         continue;
+        //     }
+        //     sum += i;
+        // }
+
+        // while(1){
+        //     var n = parseInt(prompt("숫자입력"));
+        //     if(n == 0){
+        //         break;
+        //     }
+        //     sum += n;
+        // }
+
+        // for (var i = 1; i <= 10; i++) {
+        //     for (var k = 1; k <= 10; k++) {
+        //         if ((i + k) % 3 != 0) {
+        //             continue;
+        //         }
+        //         document.write(i + " , " + k);
+        //         document.write("<br>");
+        //     }
+        // }
+
+        // for(var i=1; i<=100 ; i++){
+        //     if(i%2==0&&i%3==0){
+        //         document.write(i);
+        //         document.write("<br>");
+        //     }
+        // }
+
+        while(1){
+            var n1 = parseInt(prompt("숫자1입력"));
+            var n2 = parseInt(prompt("숫자2입력"));
+            if(n1 == 0 && n2 == 0){
+                break;
+            }
+            
+            if(n1 + n2 <100){
+                continue;
+            }
+            alert(n1 + n2);
+        }
+
+
+        document.querySelector("div").innerHTML = sum;
+        document.querySelector("#id_test").innerHTML = sum;
+    }
+    f_test();
+</script>
+
+</html>
