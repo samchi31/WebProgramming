@@ -21,16 +21,46 @@
     </pre>
     
     <script>
-        // var v_mascot = "꿈돌이";    // 일반 변수 재선언 재할당 가능
+        /* // var v_mascot = "꿈돌이";    // 일반 변수 재선언 재할당 가능
         let v_mascot = "a";
         // let v_mascot = 1;   // let 은 재선언 불가능 재할당 가능
         const v_const = 1;
         // v_const = "30";  // 재선언 재할당 불가능
-        console.log(typeof(v_mascot));
+        console.log(typeof(v_mascot)); */
 
         // 변수 타입은 기본형과 참조형
         // 기본형은 number, string, boolean (.으로 속성에 접근 불가능)
         // 참조형은 배열, JSON(object) 가 있음 (.으로 속성에 접근가능)
+
+
+
+        // "use strict" // strict mode 사용
+
+        function fnc(){
+            v_mascot = "꿈돌이"; // 타입 없으면 전역변수
+        }
+        fnc();
+        console.log(v_mascot);
+
+
+        var v_sansu = "123" + 456;  // 문자열 결합
+        var v_sansu = "123" - 456;  // + 뺴고는 모두 연산됨
+        console.log(v_sansu);
+
+        // alert(parseInt("ABC123")); //NaN
+        // alert(parseInt("123ABC")); // 숫자만 반환
+
+        if("123" == 123){   // loose compare, 동등연산자
+            alert("같음");
+        }
+
+        if("123" === 123){  // strict compare, 일치연산자
+            alert("같음");
+        }
+
+        if([] == []){   // 객체(배열) 값이 같아도 주소가 다름
+            alert("같음");
+        }
     </script>
 </body>
 </html>

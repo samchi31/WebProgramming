@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    // 조건문 반복문의 문법은 자바와 거의 동일
+
+    // 문자열은 ""(공백)만 false로 형변환되고 나머지는 true로...
+    // 숫자는 0만 false로 형변환되고 나머지는 true..
+    if ("0") {
+        // alert("참이야");
+    } else {
+        // alert("거짓이야");
+    }
+
+    for (var x in document) {
+        console.log(document[x]);
+    }
+
+    // break continue
+    var msg = "";
+    for (var i = 0; i < 10; i++) {
+        if (i == 3) {
+            // break;
+            continue;
+        }
+        msg += i + "<br>";
+    }
+    document.write(msg);
+</script>

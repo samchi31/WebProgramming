@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            border: 1px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>숫자 2개와 연산자 1개를 입력하고 결과 출력</h3>
+    <div id="id_disp">div1</div>
+    <div>div2</div>
+    <div>div3</div>
+    <input type="button" value="계산" onclick="calc()"> <br>
+    결과값 : <input type="text" id="id_text">
+
+    <script>
+        function calc() {
+            // var v_pmpt = prompt("1번째는 필수", "2번째는 옵션");
+            // alert(v_pmpt + typeof v_pmpt);
+
+            var a = parseInt(prompt("숫자 입력 1: "));
+            var b = parseInt(prompt("숫자 입력 2: "));
+            var c = prompt("연산자 입력: ", "+,-,*,/ 중 하나");
+
+            // alert(a+","+b+","+c);
+
+            var sum = 0;
+            // if (c == '+') {
+            //     sum = a + b;
+            // } else if (c == '-') {
+            //     sum = a - b;
+            // } else if (c == '*') {
+            //     sum = a * b;
+            // } else if (c == '/') {
+            //     sum = a / b;
+            // } else {
+            //     alert("사칙 연산자 입력")
+            //     return  calc();
+            // }
+
+            switch (c) {
+                case '+':
+                    sum = a + b;
+                    break;
+                case '-':
+                    sum = a - b;
+                    break;
+                case '*':
+                    sum = a * b;
+                    break;
+                case '/':
+                    sum = a / b;
+                    break;
+                default:
+                    alert("사칙 연산자 입력")
+                    return calc();
+            }
+
+            // document.write(sum);
+            // document.getElementById('id_disp').innerHTML = sum;
+            // document.getElementsByTagName('div')[0].innerHTML = sum;    // 요소가 여러개일 때 배열로 접근
+            // document.querySelectorAll('div')[0].innerHTML = sum;    // 요소가 여러개일 때 배열로 접근
+            document.querySelector("#id_text").value = sum;
+            // document.querySelector("input[type=text]").value = sum;
+        }
+    </script>
+</body>
+
+</html>

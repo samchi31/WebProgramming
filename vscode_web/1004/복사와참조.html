@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+
+    // 복사(call by value)
+    var v_roze = "로제";
+    var v_jeni = v_roze;
+    v_jeni = "제니";
+    console.log(v_jeni);
+
+    // 참조(call by reference) 
+    var v_arr = ["로제", "제니", "리사", "지수"];
+    var v_arr2 = v_arr;
+    v_arr2[2] = "리리";
+    console.log(v_arr[2]);
+</script>
