@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 배열은 JSON과 함께 자바스크립트에서 가장 많이 사용되는 데이터 타입
+        // 자바와 다르게 특별한 제약사항이 없다(갯수선언, 타입믹스 등의 제한)
+
+        var v_arr = [1,2,3,4,5,6,];
+
+        var v_arr1 = [];
+        v_arr1[0] = 1;
+        v_arr1[1] = 2;
+        v_arr1[2] = 3;
+        v_arr1[3] = 4;
+        v_arr1[4] = 5;
+        v_arr1[5] = 6;
+        v_arr1[6] = 7;
+
+        var v_arr2 = [];
+        v_arr2[0] = "안뇽";
+        v_arr2[1] = "안뇽안뇽";
+
+        console.log(v_arr,v_arr.length);
+
+        var v_arr3 = [];
+        for(var i=11;i<30;i++){
+            // v_arr3[i-11] = i;
+            v_arr3[v_arr3.length] = i;
+        }
+        console.log(v_arr3);
+
+        for(var i=10;i>0;i--){
+            // hoisting - 선언부만 위로 올려 코드를 최적화 시킴 ( 사용지양)
+            push(v_arr, i);
+        }
+        function push(p_arr, p_val){
+            p_arr[p_arr.length] = p_val;
+        }
+
+        var arr = new Array();
+        for(var i=10;i>0;i--){
+            arr.push(i);
+        }
+    </script>
+</body>
+</html>

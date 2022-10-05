@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_myName = "내 이름";
+    function f_merong() {
+        var sum = [];
+        for (var i = 0; i < 10; i++) {
+            sum.push(i);
+        }
+    }
+    f_merong();
+    console.log(sum);// 접근 불가
+</script>
+<body>
+    <pre>
+        변수키워드 3종
+
+        var
+            함수 범위에서 유효(function scope)
+            재선언, 재할당 가능
+            변수선언 키워드 생략 가능
+            => 개발자 오류 발생 가능성 높임
+        let
+            블록 범위에서 유효(block scope)
+            재선언 불가, 재할당 가능
+        const
+            블록 범위에서 유효(block scope)
+            재선언, 재할당 불가
+    </pre>
+</body>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //함수 호출 시 브라우저가 읽는 순서로 인해 표현식 함수가 출력
+    //선언식 함수(기명함수) 브라우저 런타임 이전 선언됨
+    //표현식 함수(무명, 익명함수) 브라우저 런타임에 동적으로 선언됨
+
+    // 표현식 함수 (선언식함수 보다 나중에 선언됨)
+    var f_fnc = function () {
+        // alert("표현식 함수");
+    }
+
+    // 선언식 함수
+    function f_fnc() {
+        // alert("선언식 함수");
+    }
+
+    var f_fnc2 = () => {
+        // alert("화살표 함수");
+    }
+
+    function f_fnc3(p_arg1, p_arg2, p_arg3) {
+        // alert("넘어오는 인자수 부족 시 undefined 반환");
+        return "돌려주는 값";
+    }
+    f_fnc();
+    f_fnc2();
+    f_fnc3(111);
+
+    // 호출하지 않고 함수자체를 변수에 담음
+    var v_func = f_fnc3; // function pointer
+    console.log(v_func);
+
+    //리턴 값 저장
+    var v_return = f_fnc3();    //호출
+    console.log(v_return);
+
+    var v_ret = "";
+    function f_if(p_arg){
+        if(p_arg == "올슨"){
+            v_ret = "완다";
+            return;
+        } /* else {
+            v_ret = "캡틴마블";
+        } */
+        v_ret = "캡틴마블";
+    }
+    f_if("올슨");
+    alert(v_ret);
+
+    function f_dry(p_str, p_end, p_msg){
+        for(var i=p_str;i<p_end;i++){
+            alert(p_msg);
+        }
+    }
+    // f_dry(1,10,"안녕");
+
+    //즉시 실행 함수
+    //무명,익명함수
+    //1회만 실행, 이름 선언 안함
+    (function f_aa(){
+        alert("런타임 후 바로 실행되요");
+    })
+</script>

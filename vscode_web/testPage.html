@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>testWebPage</title>
+    <link rel="shorcut icon" href="./images/팽도리.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/testStyle.css">
+
+    <style>
+        #search, #button{
+            border: 1px solid lightgray;
+            height: 50%;
+        }
+
+        #side_btn{
+            width: 100%;
+            height: 80px;
+            align-self: center;
+            background-color: white;
+            border: 0px;
+        }
+
+        #side_btn:hover {background-color: #ccc;}
+        #head1{
+            height: 100%;
+            float: left;
+            
+        }
+    </style>
 </head>
+
 <body>
-    <table border="1">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <div id="wrapper">
+        <div id="side">
+            <input type="button" id="side_btn" value="=">
+            <input type="button" id="side_btn" value="홈">
+            </input>
+            <input type="button" id="side_btn" value="탐색">
+            </input>
+            <input type="button" id="side_btn" value="Shorts">
+            </input>
+            <input type="button" id="side_btn" value="구독">
+            </input>
+            <input type="button" id="side_btn" value="보관함">
+            </input>
+            <input type="button" id="side_btn" value="시청기록">
+            </input>
+        </div>
+        <div id="content">
+            <div id="head">
+                <div>
+                    <div id="head1">
+                        너튜브
+                    </div>
+                    <div id="head1">
+                        <input type="text">
+                        <input type="button" value="">
+                    </div>
+                    <div id="head1">
+                        로그인
+                    </div>
+                </div>
+                <div id="search">
+
+                </div>
+                <div id="button">
+
+                </div>
+            </div>
+            <div id="body">
+
+
+            </div>
+        </div>
+    </div>
 </body>
+
 </html>
