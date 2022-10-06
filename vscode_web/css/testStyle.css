@@ -5,13 +5,13 @@
 }
 
 #wrapper {
-    background-color: bisque;
+    background-color: white;
     width: 100%;
     height: 100vh;
     position: relative;
 }
 #side{
-    background-color: aquamarine;
+    background-color: white;
     float: left;
     width: 80px;
     height: 100%;
@@ -21,7 +21,7 @@
     z-index: 999;
 }
 #content{
-    background-color: palevioletred;
+    background-color: white;
     float: left;
     width: 100%;
     height: 100%;
@@ -30,7 +30,7 @@
     top: 0px;
 }
 #head{
-    background-color: lavender;
+    background-color: white;
     opacity: 0.9;
     width: 100%;
     height: 120px;
@@ -39,10 +39,31 @@
     z-index: 100;
 }
 #body{
-    background-color: khaki;
+    background-color: white;
     width: 100%;
     height: 90%;
     position: absolute;
     top: 120px;
     z-index: 1;
+}
+.upper, .lower{
+    border: 1px solid lightgray;
+    height: 50%;
+}
+
+#side_btn{
+    width: 100%;
+    height: 80px;
+    align-self: center;
+    background-color: white;
+    border: 0px;
+}
+
+#side_btn:hover {background-color: #ccc;}
+
+#head1{
+    height: 100%;
+    float: left;
+    margin-top: 10px;
+    margin-right: 100px;
 }

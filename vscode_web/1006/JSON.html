@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- JSON JavaScript Object Notation
+        자바 스크립트 객체 표기법으로 
+        네트워크를 통한 데이터 전달에 사용되는 대표적인 포맷형식
+        기존 xml 보다 다방면을 장점을 가지고 있으므로 대체되었다
+         -->
+    <script>
+        var v_obj = {
+            name : "객체",
+            value : "값"
+        }
+        // console.log(v_obj);
+
+        // JSON 객체의 stringify() 사용 - object => JSON
+        var jsonObj = JSON.stringify(v_obj);
+        console.log(jsonObj);
+
+        // JSON.parse() - JSON => Object 
+        var objson = JSON.parse(jsonObj);
+        console.log(objson);
+    </script>
+</body>
+</html>

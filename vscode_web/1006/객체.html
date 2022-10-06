@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    // 리터럴 방식
+    // {property key : property value} 형태
+    // 프로퍼티의 값(value)이 함수 인 경우 메소드라 지칭한다
+
+    var myObj = {
+        name : "아이유",
+        age : 30,
+        hello : function(){
+            // return "이름은" + this.name + "이고 " + "나이는" + this.age ; 
+            return `이름은 ${this.name}이고 나이는 ${this.age}` ;
+        }
+    }
+    console.log(myObj.hello());
+
+    // 생성자 방식 - new 연산자와 내장객체를 이용
+    var myObj2 = new Object();
+    myObj2.name = "아이유";
+    myObj2["age"] = 30;
+    myObj2.hello = function(){
+        return `이름: ${this.name} 나이: ${this.age}` ;
+    }
+    console.log(myObj2);
+    console.log(myObj2["name"]);
+    console.log(myObj2["hello"]());
+
+    // new 연산자로 String 객체 생성
+    var strObj = new String("hello");
+    var strObj1 = "hello~~~";
+    console.log(strObj,strObj1);
+    console.log(Object.keys(strObj));
+    console.log(Object.values(strObj));
+
+    // new Array 객체 생성
+    var arrObj = new Array([1,2,3,],[4,5]);
+    var arrObj1 = [[1,2,3],[4,5]];
+    console.log(arrObj.entries(arrObj));
+
+    // custom Object로 객체 생성
+    var selfObj = function(name, age){
+        this.name = name;
+        this.age = age;
+        // key 가 숫자, 한글이면 . 으로 접근 안됨 => 배열식으로 접근
+        this["한국나이"] = parseInt(age) +2;
+        this[1] = "배열식 접근법";
+        this.hello = function(){
+            return `이름은 ${this.name}이고 \r\n 나이는 ${this.age}/${this["한국나이"]} \r\n
+             숫자로 된 key는 ${this[1]}`;
+        }
+    }
+
+    // custom Object - 생성자 함수를 사용해서 객체 생성
+    var sObj = new SelfObj('IU','29');
+    console.log(sObj);
+    sObj.팬클럽 = "유애나"; // 속성 추가
+    sObj["문자열 형태"] =  "값";
+    //메소드 추가
+    sObj.fan = function(){
+        return `문자열 형태: ${this["문자열 형태"]} 팬클럽 : ${sObj.팬클럽}`;
+    }
+    console.log(sObj.fan());
+    delete sObj.팬클럽;// 속성 메소드 삭제
+
+    /*
+    속성과 메소드의 접근방법
+
+    1. 객체.key
+    2. 객체["key"] >> 대괄호 안에 반드시 문자열 형태로 key 접근
+        * 식별자로 허용되지 않는 숫자가 들어간 속성 사용 시 반드시 배열식(대괄호) 표기법을 사용
+    3. 변수참조방식
+    var key = "age";
+    myObj[key]
+    */
+</script>
+</body>
+</html>
