@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+    <meta charset="UTF-8">
+    <script>
+        var v_datas = [
+            {
+                "name" : "또치",
+                "birth" : "2021-01-01",
+                "skill" : "javascript"
+            },
+            {
+                "name" : "둘리",
+                "birth" : "2020-08-05",
+                "skill" : "angular"
+            },
+            {
+                "name" : "희동",
+                "birth" : "1999-09-24",
+                "skill" : "oracle"
+            },
+            {
+                "name" : "영희",
+                "birth" : "1921-11-31",
+                "skill" : "vuejs"
+            },
+            {
+                "name" : "길동",
+                "birth" : "2011-03-21",
+                "skill" : "all"
+            }
+        ]
+
+        // name 으로 정렬하기
+        v_datas.sort(function(a,b){
+            console.log("a:",a,"b:",b);
+
+            // 각 a와 b가 가진 객체의 속성 name에 접근해서 비교
+            if( a["name"] >= b["name"]){
+                return 1;
+            }
+            return -1;
+        });
+
+        // birth 으로 정렬하기
+        v_datas.sort(function(a,b){
+            if( a.birth.replaceAll("-","") >= b.birth.replaceAll("-","")){
+                return 1;
+            }
+            return -1;
+        });
+
+        // skill 으로 정렬하기
+        // v_datas.sort();
+
+        console.log(v_datas);
+    </script>

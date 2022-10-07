@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    console.log(new Date());
+    console.log(new Date(1000));
+    console.log(new Date("2022.10.07"));
+    console.log(new Date(2022,10-1,07));  // month는 0~11이다
+
+    console.log(new Date().toLocaleString());
+    console.log(new Date().toLocaleDateString());
+    console.log(new Date().toLocaleTimeString());
+
+    var today = new Date();
+    console.log(today.getTime()); // 1970 ~ 현재까지 ms
+    console.log(today.getTime()/1000/60/60/24/365);
+
+</script>

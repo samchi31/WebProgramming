@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_clock {
+            color: gold;
+            background-color: black;
+            font-size: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_clock">00:00:00</div>
+    <script>
+        // console.log(id_clock);
+
+        var v_clk1 = document.getElementById("id_clock");
+        var v_clk2 = document.getElementsByTagName("div")[0];
+        var v_clk3 = document.querySelector("#id_clock");
+
+        var v_today = new Date();
+        var v_hour = v_today.getHours();
+        var v_min = v_today.getMinutes();
+        var v_sec = v_today.getSeconds();
+
+        // console.log(v_hour,v_min,v_sec);
+
+        v_clk1.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+
+        function f_clock() {
+            var v_clk1 = document.getElementById("id_clock");
+            var v_today = new Date();
+            var v_hour = v_today.getHours();
+            var v_min = v_today.getMinutes();
+            var v_sec = v_today.getSeconds();
+            v_clk1.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+            setTimeout(f_clock,1000);
+        }
+        setTimeout(f_clock);
+    </script>
+</body>
+
+</html>
