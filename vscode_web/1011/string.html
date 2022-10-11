@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    var v_str = "김준일, 전혜수, 박인수, 윤호연, 박인성, 김준일";
+    // alert(v_str.length);
+
+    // 문자열에 .을 찍는 순간 자동으로 String 객체로 변화
+    v_str.charAt(1); // 
+    v_str.charCodeAt(1); // 유니코드 반환
+    v_str.indexOf("윤호연"); // 위치 인덱스 반환
+
+    var a = "에이";
+    var b = "비";
+    var c = "씨";
+
+    var d= a.concat(b,c,); // 여러 문자열 합치기
+
+    var v_trim = "              5교시     ";
+    v_trim.trim(); // 앞뒤 공백 제거
+
+    var v_replace = v_str.replace("김준일","임준일"); // 첫번째 문자열 바꾸기 원본데이터 그대로
+    var v_replace = v_str.replaceAll("김준일","임준일"); // 모든 문자열 바꾸기 
+    var regex = /김준일/g;
+    var v_replace = v_str.replace(regex,"임준일"); // 모든 문자열 바꾸기 정규식 사용
+
+    // substr(str, length) | substring(str,end) | slice(str, end) -> end는 포함하지 않음
+    v_str.substr(1,2); //준일   // 문자열 자르기
+    v_str.substring(1,2); //준  // 문자열 자르기
+    v_str.slice(1,2); //준  // 문자열 자르기
+
+    var v_split = v_str.split(","); // 문자열을 구분자로 분리해서 배열로 반환
+    var v_split = v_str.split(""); // 문자열을 하나하나 쪼개기
+</script>

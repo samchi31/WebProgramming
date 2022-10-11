@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <h4> 주민등록번호에서 정보 추출(생일, 성별, 나이) </h4>
+    <input type="button" value="추출" onclick="f_info()">
+    <div id="d1"></div>
+
+    <h4> 주민등록번호 유효성 검증 </h4>
+    <input type="button" value="검증" onclick="f_valid()">
+    <div id="d2"></div>
+
+    <script>
+        function f_info() {
+            var jumin = prompt("주민등록번호 입력", "110325-4432618");
+            // 자료추출 (index 01: 연도 / 23: 월 / 45: 일 / 7: 성별)
+            var y = jumin.substring(0, 2); // slice(0,2) substr(0,2)
+            var m = jumin.substring(2, 4); // slice(2,4) substr(2,2)
+            var d = jumin.substring(4, 6); // slice(4,6) substr(4,2)
+            var g = jumin.substring(7, 8); // slice(7,8) substr(7,1) charAt(7)
+
+            var yy = "";
+            if (g == "1" || g == "2") {
+                yy == "19";
+            } else if (g == "3" || g == "4") {
+                yy = "20";
+            }
+
+            var gd = "";
+            if (g == "1" || g == "3") {
+                gd == "남자";
+            } else if (g == "2" || g == "4") {
+                gd = "여자";
+            }
+
+            var bir = yy.concat(y) + "년" + m + "월" + d + "일";
+
+            var now = new Date();
+            var year = now.getFullYear(); // 4자리 연도
+            var age = year - yy.concat(y);
+
+            var result = `주민등록번호: ${jumin.substr(0, 8)}******<br>
+                          생년월일 : ${bir}<br>
+                          나이 : ${age}<br>
+                          성별 : ${gd}<br>`;
+            document.querySelector('#d1').innerHTML = result;
+        }
+
+
+        function f_valid() {
+            var jumin = prompt("주민등록번호 입력", "110325-4432618");
+            // 하이픈 제거방식 1
+            // idNum = jumin.replace("-",'');
+
+            // 하이픈 제거방식 2
+            var idNum = jumin.split("-");
+            var idNum = idNum[0].concat(idNum[1]);
+
+            // 방식 1. 문자열 값 활용하기
+            // var num = "234567892345";
+            // var sum = 0;
+            // for (var i = 0; i < idNum.length-1; i++) {
+            //     sum += num.charAt(i) * idNum[i];
+            // }
+
+            // 방식 2. 순차적인 값으로 공식 활용
+            var sum = 0;
+            for (var i = 0; i < idNum.length - 1; i++) {
+                sum += (i % 8 + 2) * idNum[i];
+            }
+            console.log(sum);
+
+            var rst = (11 - (sum%11))%10;
+
+            var result = "";
+            if(jumin.charAt(idNum.length) == rst){
+                result = "유효함";
+            } else {
+                result = "유효안함";
+            }
+            
+            document.querySelector('#d2').innerHTML = result;
+        }
+    </script>
+</body>
+
+</html>

@@ -38,7 +38,7 @@
             var v_hour = v_today.getHours();
             var v_min = v_today.getMinutes();
             var v_sec = v_today.getSeconds();
-            v_clk1.innerHTML = v_hour + ":" + v_min + ":" + v_sec;
+            v_clk1.innerHTML = String(v_hour).padStart(2,"0") + ":" + String(v_min).padStart(2,"0") + ":" + String(v_sec).padStart(2,"0");
             setTimeout(f_clock,1000);
         }
         setTimeout(f_clock);
