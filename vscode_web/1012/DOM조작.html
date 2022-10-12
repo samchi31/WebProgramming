@@ -14,6 +14,8 @@
     <input type="button" value="버튼" onclick="link()">
     <h3>요소 생성하기</h3>
     <input type="button" value="추가" id="id_add">
+    <h5>이미지 추가하기</h5>
+    <input type="button" value="img추가" id="img_add">
     <div id="id_disp"></div>
 
     <script src="../js/random.js"></script>
@@ -39,6 +41,26 @@
 
         function f_randColor(){
             return "rgb("+f_random(0,255)+","+f_random(0,255)+","+f_random(0,255)+")";
+        }
+
+        var v_imgAdd = document.querySelector("#img_add");
+        v_imgAdd.addEventListener("click",function(){
+        /*  var v_img = document.createElement("img");
+            v_img.src = "../images/imgs/" + f_ranImg() + ".jpg";
+            // v_img.alt = "개사진";
+            v_img.setAttribute("alt", "개 만지고 싶다.")
+            // v_img.width = 100;
+            v_img.style.width = "400px";
+            v_disp.appendChild(v_img); */
+
+            //문자열을 이용해서 요소 생성하기
+            // var v_str = "<img src='../images/imgs/" + f_ranImg() + ".jpg' alt=''>";
+            var v_str = "<img src='../images/꼬부기_공식_일러스트.png' alt=''>";
+            v_disp.innerHTML += v_str;
+        });
+
+        function f_ranImg(){
+            return f_random(1, 8);
         }
     </script>
 </body>
