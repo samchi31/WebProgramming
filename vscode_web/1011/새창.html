@@ -5,6 +5,21 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <h3>열린창</h3>
+    <textarea name="" id="new_text" cols="30" rows="20" onkeydown="f_kd()"></textarea>
+    <input type="button" value="버튼" onclick="f_chat()">
+
+    <script>
+        function f_chat(){
+            // 부모 창 opener
+            opener.document.querySelector("#old_text").value = document.querySelector("#new_text").value;
+        }
+        function f_kd(){
+            // console.log(event);
+            if(event.key == 'Enter'){
+                f_chat();
+            }
+        }
+    </script>
 </body>
 </html>

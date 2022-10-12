@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp{
+            border: 1px solid slateblue;
+        }
+    </style>
+</head>
+<body>
+    <h3>버튼 눌리면 네이버로 연결되는 하이퍼링크 만들기</h3>
+    <input type="button" value="버튼" onclick="link()">
+    <h3>요소 생성하기</h3>
+    <input type="button" value="추가" id="id_add">
+    <div id="id_disp"></div>
+
+    <script src="../js/random.js"></script>
+    <script>
+        var v_disp = document.querySelector("#id_disp");
+        function link(){
+            var v_tagA = document.createElement("a");
+            v_tagA.href = "http://naver.com";
+            v_tagA.innerHTML = "네이버로 이동"
+            v_tagA.style.display = "block";
+            // console.log(v_tagA);
+            v_disp.appendChild(v_tagA);
+        }
+        
+        var v_idAdd = document.querySelector("#id_add");
+        v_idAdd.addEventListener("click",function(){
+            var v_h1 = document.createElement("h1");
+            v_h1.innerHTML = "집에 보내줘";
+            v_h1.style.color = f_randColor();
+            v_h1.style.backgroundColor = f_randColor();
+            v_disp.appendChild(v_h1);
+        });
+
+        function f_randColor(){
+            return "rgb("+f_random(0,255)+","+f_random(0,255)+","+f_random(0,255)+")";
+        }
+    </script>
+</body>
+</html>

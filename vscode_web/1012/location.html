@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h2>location</h2>
+    <input type="button" value="페이지이동" onclick="f_go()">
+    <input type="button" value="페이지 reload" onclick="f_reload()">
+    <input type="button" value="페이지 replace" onclick="f_replace()">
+    <script>
+        var url = document.createElement("a");
+        url.href = "https://www.ddit.or.kr/"
+
+        console.log("hash", url.hash);
+        console.log("host",url.host);
+        console.log("hostname",url.hostname);
+        console.log("pathname",url.pathname);
+        console.log("port",url.port);
+        console.log("protocol",url.protocol);
+        console.log("search",url.search);
+
+        function f_go(){
+            // location.assign("http://naver.com");
+            location.href="http://daum.net";
+        }
+        function f_reload(){
+            location.reload();
+        }
+        function f_replace(){
+            location.replace("http://google.com");
+        }
+        //href와 replace 
+        // href는 서버에 요청할 떄도 있고, 브라우저가 캐시한 파일을 보여줄 수도 있다
+        // replace는 서버에 항상 새롭게 요청 이전 페이지 이동불가
+        
+    </script>
+
+</body>
+</html>

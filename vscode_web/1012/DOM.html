@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!--
+        DOM
+        Documnet Object Model 문서 객체 모델 
+        브라우저가 html페이를 인식하도록 구성한 모델
+
+        문서의 구조화된 표현을 제공
+
+        프로그래밍 언어가 dom 구조에 접근할 수 있도록 방법 제공
+        구조 스타일 내용 변경 가능
+
+        DOM Tree 구조
+        *Document
+        ㄴ DocumentType
+        ㄴ *Element
+            ㄴ *Attribute
+            ㄴ Entity
+            ㄴ Entity
+            ㄴ EntityReference
+            ㄴ *Text
+        ㄴ Comment
+        ㄴ CDATASection
+        ㄴ Notation        
+    -->
+    <div id="target" style="font:20px bold" onclick="addText('무궁화꽃이피었습니다')">여기를 클릭하세요</div>
+
+    <script>
+        function addText(t){
+            var node = document.createTextNode(t);
+            document.querySelector("#target").appendChild(node);    // appendChild 문자열 데이터는 오류 node 객체만 가능
+            document.querySelector("#target").append("asdfasdf");   // 둘다 가능
+
+        }
+    </script>
+</body>
+</html>

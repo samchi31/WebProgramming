@@ -5,12 +5,16 @@
     <title>Document</title>
 </head>
 <body>
+    <textarea name="" id="old_text" cols="50" rows="30"></textarea>
     <input type="button" value="새창 open" onclick="f_winOpen()">
     <input type="button" value="새창 close" onclick="f_winClose()">
     <script>
         var win;
         function f_winOpen(){
-            win = open("새창.html", "newPage", "width =400, height = 300");
+            // 창 , 이름, 크기위치
+            // 이름 값을 지정하면 여러 창이 뜨지 않고 새로고침만 됨
+            // 위치 좌표 값이 - 일때 0으로 이동
+            win = open("새창.html", "newPage", "width =400, height = 300, top = -200, left = -100");
         }
         function f_winClose(){
             win.close();
