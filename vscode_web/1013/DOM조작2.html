@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .child{
+            border: 1px solid slateblue;
+            font-size: 2em; /* 기본사이즈의 2배 */
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">부모
+        <!-- div.child*4 -->
+        <div class="child">마지</div>
+        <div class="child">두리</div>
+        <div class="child">세찌
+            <h1 id="sonja">손자</h1>
+        </div>
+        <div class="child">꽁지</div>
+    </div>   
+    <script>
+        var parent = document.querySelector("#parent");
+        var copy = parent.cloneNode();  // 대상을 복사 자식은 제외, 얕은복사
+        var copy2 = parent.cloneNode(true);  // 대상을 복사 자식 포함, 깊은복사
+        console.log(parent);
+        console.log(copy);
+        console.log(copy2);
+
+        parent.children[3].style.fontSize = "4em";
+        var child = parent.children; // 자식요소 배열로 반환
+        // class는 속성 이전에 예약어이므로 setAttribute를 이용해서 속성적용해야 한다
+        child[3].setAttribute("class", "꽁지");
+
+        parent.removeChild(child[1]);
+
+        var magi = parent.children[0];
+        magi.parentElement.style.border = "3px dashed gold";
+
+        var sonja = document.querySelector("#sonja");
+        sonja.parentElement.parentElement.style.border = "3px inset violet";
+
+    </script> 
+</body>
+</html>

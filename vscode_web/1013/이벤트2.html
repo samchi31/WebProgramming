@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #wrapper{
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper" onmouseover="f_over(this)" onmouseout="f_out(this)">
+        <div>어디로</div>
+        <!-- <div style="display: none;"> -->
+        <div style="visibility: hidden;">
+            <a href="//naver.com">네이버</a>
+            <a href="//google.com">구글</a>
+            <a href="//daum.net">다음</a>
+            <a href="//www.ddit.or.kr">대덕</a>
+        </div>
+    </div>
+
+    <script>
+        function f_over(p_this){
+            // 매개변수를 기점으로 대상요소를 찾아서 속성 변경
+            // display >> block 
+            // p_this.children[1].style.display = "block";
+            p_this.children[1].style.visibility = "visible";
+        }
+        function f_out(p_this){
+            // display >> none
+            // p_this.children[1].style.display = "none";
+            p_this.children[1].style.visibility = "hidden";
+        }
+    </script>
+</body>
+</html>

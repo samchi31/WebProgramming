@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid orange;
+            /* width: 100px; */
+        }
+    </style>
+</head>
+<body>
+    <div onmouseover="f_long(this)" onmouseout="f_stop()" style="width:100px; height:100px;">길어진다</div>
+    <div onmouseover="f_tall(this)" onmouseout="f_stop()" style="width:100px; height:100px;">커진다</div>
+    <div onmouseover="f_wide(this)" onmouseout="f_stop()" style="width:100px; height:100px;">넓어진다</div>
+
+    <script>
+        var timer;
+        function f_long(p_this){
+            // console.log(p_this.style.width);
+            // 스크립트에서는 인라인 형식의 스타일 정보만 조회 가능
+            // if(!p_this.style.width){
+            //     p_this.style.width = "100px";
+            // }
+            p_this.style.width = parseInt(p_this.style.width) + 10 + "px";
+            timer = setTimeout(f_long,500,p_this);
+        }
+        function f_tall(p_this){
+            // console.log(p_this.style.width);
+            p_this.style.height = parseInt(p_this.style.height) + 10 + "px";
+            timer = setTimeout(f_tall,500,p_this);
+        }
+        function f_wide(p_this){
+            // console.log(p_this.style.width);
+            p_this.style.width = parseInt(p_this.style.width) + 10 + "px";
+            p_this.style.height = parseInt(p_this.style.height) + 10 + "px";
+            timer = setTimeout(f_wide,500,p_this);
+        }
+        function f_stop(){
+            clearTimeout(timer);
+        }
+    </script>
+</body>
+</html>

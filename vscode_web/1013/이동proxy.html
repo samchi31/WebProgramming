@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp {
+            font-size: 0;
+        }
+
+        img {
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="id_disp">
+        <img src="../images/1.png" alt="">
+        <img src="../images/2.png" alt="">
+        <img src="../images/3.png" alt="">
+        <img src="../images/4.png" alt="">
+    </div>
+    <input type="button" value=">>" id="autoRight" onclick="f_proxyRight()">
+    <input type="button" value="<<" id="autoLeft" onclick="f_proxyLeft()">
+    <input type="button" value="정지" id="stop" onclick="f_proxyStop()">
+
+
+    <script>
+        var v_disp = document.querySelector("#id_disp");
+        var v_autoR = document.querySelector("#autoRight");
+        var v_autoL = document.querySelector("#autoLeft");
+        var v_stop = document.querySelector("#stop");
+
+        var to;
+
+        function f_right() {
+            var last = v_disp.lastElementChild;
+            v_disp.insertBefore(last, v_disp.firstChild);
+            to = setTimeout(f_right, 1000);
+        };
+
+        function f_left() {
+            var first = v_disp.firstElementChild;
+            v_disp.insertBefore(first, v_disp.lastChild);
+            to = setTimeout(f_left, 1000);
+        };
+
+        function f_stop() {
+            clearTimeout(to);
+        };
+
+        // proxy: 대리자?
+        // proxy pattern
+        var exist = false;  //상태 변수
+        function f_proxyRight() {
+            if (!exist) {
+                f_right();  // 대리자가 실행
+                exist = true;
+            }
+        }
+
+        function f_proxyLeft() {
+            if (!exist) {
+                f_left();  // 대리자가 실행
+                exist = true;
+            }
+        }
+
+        function f_proxyStop() {
+            f_stop();
+            exist = false;
+        }
+    </script>
+</body>
+
+</html>

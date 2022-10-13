@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp{
+            font-size: 0;
+        }
+        img{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="id_disp">
+        <img src="../images/우파_공식_일러스트.png" alt="">
+        <img src="../images/치렁_공식_일러스트.png" alt="">
+        <img src="../images/팽도리.png" alt="">
+        <img src="../images/루기아_공식_일러스트.png" alt="">
+    </div>
+    <input type="button" value="이동" id="move">
+    <input type="button" value=">>" id="autoRight">
+    <input type="button" value="<<" id="autoLeft">
+    <input type="button" value="정지" id="stop">
+
+
+    <script>
+        var v_mv = document.querySelector("#move");
+        var v_disp = document.querySelector("#id_disp");
+        var v_autoR = document.querySelector("#autoRight");
+        var v_autoL = document.querySelector("#autoLeft");
+        var v_stop = document.querySelector("#stop");
+
+        var to;
+        v_mv.addEventListener("click", function(){
+            var img1 = document.querySelectorAll("img")[0];
+            v_disp.appendChild(img1);
+        });
+
+        v_autoR.addEventListener("click", function fn1(){
+            v_autoR.setAttribute("disabled",true);
+            var last = v_disp.lastElementChild;
+            v_disp.insertBefore(last,v_disp.firstChild);
+            to = setTimeout(fn1,1000);
+        });
+
+        v_autoL.addEventListener("click", function fn2(){
+            v_autoL.setAttribute("disabled","disabled");
+            var first = v_disp.firstElementChild;
+            v_disp.insertBefore(first,v_disp.lastChild);
+            to = setTimeout(fn2,1000);
+        });
+
+        v_stop.addEventListener("click", function fn2(){
+            clearTimeout(to);
+            v_autoR.removeAttribute("disabled");
+            v_autoL.removeAttribute("disabled");
+        });
+    </script>
+</body>
+</html>

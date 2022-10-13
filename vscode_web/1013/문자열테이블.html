@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        table{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <input type="button" value="모두출력" id="gu_all">
+    <select id="gu_sel">
+        <option value="-">단 선택</option>
+        <option value="2">2단</option>
+        <option value="3">3단</option>
+        <option value="4">4단</option>
+        <option value="5">5단</option>
+        <option value="6">6단</option>
+        <option value="7">7단</option>
+        <option value="8">8단</option>
+        <option value="9">9단</option>
+    </select>
+    <div id="id_disp"></div>
+    <script>
+        var v_guAll = document.querySelector("#gu_all");
+        var v_disp = document.querySelector("#id_disp")
+        v_guAll.addEventListener("click", function(){
+            var v_tbl = "";
+            for (var i=2;i<=9;i++){
+                v_tbl += "<table border = 1>";
+                v_tbl += "<tr><th>"+ i +"단</th></tr>";
+                for(var j=1;j<10;j++){
+                    // v_tbl += "<tr><td>"+ i + "*" + j + "=" + (i*j) + "</td></tr>";
+                    v_tbl += `<tr><td>${i} * ${j} = ${i*j}</td></tr>`;
+                }
+                v_tbl += "</table>";
+            }
+            v_disp.innerHTML = v_tbl;
+        });
+
+        var v_guSel = document.querySelector("#gu_sel");
+        v_guSel.addEventListener("change",function(){
+            if(v_guSel.value == "-") {
+                v_disp.innerHTML = "";
+                return;
+            }
+            var v_tbl = "<table border=1>";
+            v_tbl += `<tr><th> ${v_guSel.value} 단</th></tr>`;
+            for (var i=1;i<=9; i++){
+                v_tbl += `<tr><td>${v_guSel.value} * ${i} = ${v_guSel.value * i}</td></tr>`;
+            }
+            v_tbl += "</table>";
+            v_disp.innerHTML = v_tbl;
+        });
+    </script>
+</body>
+</html>
