@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .bb{
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="bb">글리치</div>
+        <div class="bb">수리남</div>
+        <div class="bb">종이의집</div>
+        <div class="bb">오징어게임</div>
+    </div>
+
+    <script>
+        function f_nflx(){
+            alert("넷플릭스오리지널시리즈");
+        }
+
+        var v_bbs = document.querySelectorAll(".bb");
+        for(var i=0;i<v_bbs.length;i++){
+            v_bbs[i].addEventListener('click', function(){
+                alert("재미썽");
+            });
+        }
+
+        //동적요소에는 이전 이벤트 적용 x
+        // 새롭게 작성된 코드는 기존 코등까지 다시 생성하기 때문에 이벤트 적용 x
+        var parent = document.querySelector("#wrapper")
+        parent.innerHTML += "<div class = 'bb'>브리저튼</div>"
+
+        // 동적요소는 이벤트 위임을 통해 이벤트를 부여받음
+        parent.addEventListener('click', function(){
+            alert("이벤트의 대상은 부모, 자식 위임받음");
+        });
+    </script>
+</body>
+</html>

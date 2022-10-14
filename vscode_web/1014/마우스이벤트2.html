@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #move {
+            position:absolute;  /* static은 요소가 움직일 수 없다 */
+            width: 40px;
+            height: 40px;
+            background-image: url(../images/wallpaper.jpg);
+            background-size: 40px 40px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="move">치렁</div>
+
+    <script>
+        var v_mv = document.querySelector("#move");
+        window.addEventListener("mousemove", function(){
+            // event.clientX, event.clientY (x좌표, y좌표)
+            v_mv.style.left = event.clientX + "px";
+            v_mv.style.top = event.clientY + "px";
+        })
+    </script>
+</body>
+</html>

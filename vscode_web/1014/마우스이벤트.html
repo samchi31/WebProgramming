@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #disp{
+            border: 1px solid pink;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <h4>마우스 이벤트</h4>
+    <!-- oncontextmenu="return false;"  : 마우스 오른쪽 버튼 메뉴 안뜨게 됨 -->
+    <!-- <div id="disp" onmousedown="f_down()" onmouseup="f_up()" oncontextmenu="return false;"></div> -->
+    <div id="disp" onmousedown="f_down()" onmouseup="f_up()" oncontextmenu=""></div>
+
+
+    <script>
+        var v_disp = document.querySelector("#disp");
+        function f_down(){
+            // alert(event.button + "버튼눌림");
+            if(event.button == 0){
+                v_disp.innerHTML = "<h4>왼쪽누름</h4>";
+            }
+            else if(event.button == 1){
+                v_disp.innerHTML = "<h4>가운데누름</h4>";
+            }
+            else if(event.button == 2){
+                v_disp.innerHTML = "<h4>오른쪽누름</h4>";
+            }
+        }
+        function f_up(){
+            // alert("눌렸던 버튼을 놓음");
+        }
+
+        // 이벤트를 막아서 마우스 오른쪽 버튼 메뉴 막기
+        v_disp.addEventListener("contextmenu", function(){
+            event.preventDefault();
+        })
+    </script>
+</body>
+</html>

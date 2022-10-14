@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 방식1. 인라인스타일 -->
+    <!-- <button onclick = "fn"></button> -->
+    <button id="btn1">버튼1</button>
+    <button id="btn2">버튼2</button>
+
+    <script>
+        // 방식2. 스크립트에서 요소로
+        // 여러번 이벤트 적용해도 최종 이벤트만 적용됨
+        btn1.onclick = function(){
+            alert("asdf");
+        };
+
+        var v_count = 0;
+        btn1.onclick = function(){
+            // 안쪽에서 누적되어 실행되므로 주의
+            // btn2.addEventListener('click', function(){
+            //     alert("실행" + v_count++);
+            // })
+            btn2.onclick = function(){
+                alert("실행" + v_count++);
+            }
+            alert("qewr");
+        };
+        
+        // 방식3. 스크립트에서 요소.addEventListener(event,fn)
+        // 여러 이벤트 모두 적용 가능 (이벤트 큐에 순차적으로 쌓임)
+        btn2.addEventListener('click',function(){
+            alert("11111");
+        });
+        btn2.addEventListener('click',function(){
+            alert("222222");
+        });
+    </script>
+</body>
+
+</html>

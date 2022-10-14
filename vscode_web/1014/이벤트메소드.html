@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            position: relative;
+            left: 30px;
+            top: 30px;
+        }
+        #grandma{
+            width:300px;
+            height: 300px;
+        }
+        #mom{
+            width:200px;
+            height: 200px;
+        }
+        #me{
+            width:90px;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+    <h4>
+        이벤트 관련 두가지 메소드기억하기
+        preventDefault(): 기본 장착된 이벤트 기능 막음
+    </h4>
+    <a href="../images/치렁_공식_일러스트.png" class="view">이미지보기</a>
+    <form action="이벤트등록.html">
+        <input type="submit" value="">
+    </form>
+    <h4>
+        stopPropagation(): 이벤트 버블링 막음
+    </h4>
+    <div id="grandma" onclick="f_grand(this)">할머니
+        <div id="mom" onclick="f_mom(this)">엄마
+            <div id="me" onclick="f_me(this)">나</div>
+        </div>
+    </div>
+
+    <script>
+        var v_view = document.querySelector(".view");
+        var v_form = document.querySelector("form");
+        v_view.addEventListener("click",function(){
+            event.preventDefault(); // 링크 중지
+        });
+        v_form.addEventListener("click",function(){
+            event.preventDefault(); // form-submit 제출 중지
+        });
+
+        // 버블링 : 하위 요소 이벤트 실행 시 상위 요소 이벤트까지 발생되는 상황
+        function f_grand(p_this){
+            p_this.style.border = "4px dotted brown";
+        };
+        function f_mom(p_this){
+            p_this.style.border = "4px inset gold";
+        };
+        function f_me(p_this){
+            p_this.style.backgroundColor = "purple";
+            event.stopPropagation(); // 이벤트 버블링 중지
+        };
+    </script>
+</body>
+</html>
