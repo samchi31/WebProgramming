@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dropArea {
+            width: 400px;
+            height: auto;
+            border: 1px solid salmon;
+        }
+    </style>
+</head>
+
+<body>
+    <ol id="id_flist"></ol>
+    <div id="dropArea" ondragover="f_over()" ondrop="f_drop()">여기로</div>
+
+    <script>
+        var area = document.querySelector("#dropArea");
+        var v_flist = document.querySelector("#id_flist");
+
+        function f_over() {
+            event.preventDefault();
+        }
+
+        function f_drop() {
+            var v_files = event.dataTransfer.files; // 파일 여러개
+
+            // // FileReader 객체 생성하기
+            // var v_freader = new FileReader();
+
+            // // v_files를 대상으로 readAsDataURL => result 받기
+            // var v_fresult = [];
+            // for (let i = 0; i < v_files.length; i++) {
+            //     v_freader.readAsDataURL(v_files[i])
+            //     v_fresult.push(v_freader.result);
+            // }
+
+            // // 새요소 생성해서 대상 append하기
+            // v_freader.onload = function () {
+            //     for (var i = 0; i < v_fresult.length; i++) {
+            //         var v_img = document.createElement("img");
+            //         v_img.src = v_fresult[i];
+            //         v_img.width = 100;
+            //         area.appendChild(v_img);
+            //     }
+            // }
+
+            // 갯수 제한 - 5개까지만 표현
+            if(v_files.length > 5){
+                alert("5개 초과");
+                return;
+            }
+
+            // area, list 초기화
+            area.innerHTML = "";
+            v_flist.innerHTML = "";
+            
+            for(var i = 0 ;i< v_files.length ; i++){
+                reader(v_files[i]);
+            }
+
+        }
+
+        function reader(p_file) {
+            // FileReader 객체 생성하기
+            var v_freader = new FileReader();
+            v_freader.readAsDataURL(p_file);
+            v_freader.onload = function () {
+                var v_img = document.createElement("img");
+                v_img.src = v_freader.result;
+                v_img.width = 100;
+                area.appendChild(v_img);
+            }
+
+            var v_li = document.createElement("li");
+            v_li.innerHTML = p_file.name;
+            v_flist.appendChild(v_li);
+        }
+
+        window.addEventListener("dragover", function () {
+            event.preventDefault();
+        });
+        window.addEventListener("drop", function () {
+            event.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

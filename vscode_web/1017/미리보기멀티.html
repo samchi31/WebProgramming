@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp {
+            border-style: solid;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="file" multiple id="id_file" accept=".jpg, .png, .jfif, .gif">
+    <div id="id_disp"></div>
+
+    <script>
+        var v_fBtn = document.querySelector("#id_file");
+        var v_disp = document.querySelector("#id_disp");
+
+        v_fBtn.onchange = function () {
+            var v_files = v_fBtn.files;
+
+            // 비동기 형식으로 진행되기 때문에 오류 발생
+            // 따로 함수로 빼서 코드를 분리해서 파일 하나씩만 동기적으로
+            for(var i = 0 ;i< v_files.length ; i++){
+                reader(v_files[i]);
+            }
+        }
+        function reader(p_file) {
+            var v_freader = new FileReader();
+            v_freader.readAsDataURL(p_file);
+            v_freader.onload = function () {
+                var v_img = document.createElement("img");
+                v_img.src = v_freader.result;
+                v_img.width = 100;
+                v_disp.appendChild(v_img);
+            }
+        }
+    </script>
+</body>
+
+</html>

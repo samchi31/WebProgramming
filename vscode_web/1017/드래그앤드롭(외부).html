@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #dropArea{
+            width: 400px;
+            height: auto;
+            border: 1px solid salmon;
+        }
+    </style>
+</head>
+<body>
+    <!-- 브라우저는 읽을 수 있는 파일이 오면 새탭을 열어 보여준다 -->
+    <div id="dropArea" ondragover="f_over()" ondrop="f_drop()">여기로</div>
+    <!-- 대상요소를 외부에서 가져오므로 draggable 속성 적용할 대상 없음 -->
+
+    <script>
+        var area = document.querySelector("#dropArea");
+        function f_over() {
+            event.preventDefault();
+        }
+        function f_drop() {
+            var v_file = event.dataTransfer.files[0];
+            console.log(v_file);
+            
+            var v_freader = new FileReader();
+            // 파일을 dataURL 형식으로 읽어 result로 반환
+            v_freader.readAsDataURL(v_file);
+
+            // 파일 크기에 따라 읽고 처리하는 속도차이가 발생하므로,
+            // 읽기를 모두 완료한 후에 이벤트를 발생시켜 처리 결과를 반환받음
+            v_freader.onload = function(){
+                var v_img = document.createElement("img");
+                v_img.src = v_freader.result;
+                v_img.width = 100;
+                v_img.setAttribute("height", "100px");
+                area.appendChild(v_img);
+            }
+        }
+
+        // 우리가 지정한 영역 외 주변도 기능(=브라우저가 자동으로 파일을 여는 것)을 막아야 함
+        window.addEventListener("dragover", function(){
+            event.preventDefault();
+        });
+        window.addEventListener("drop", function(){
+            event.preventDefault();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+/*
+    동기(Synchronous)
+    요청과 응답이 처리될 때까지 대기하고,
+    응답이 오면 다음 업무를 처리하는 방식
+    직관적이고 설계가 쉽다
+    결과가 나올때까지 아무것도 못함(비효율)
+
+    비동기(Asynchronous)
+    요청 이후 그에 대한 응답이 처리되지 않은 상태에서
+    다음 업무를 처리하는 방식
+    데이터 처리 중 다른 작업이 가능하기 때문에 자원을 효율적으로 사용하며 불필요한 로딩을 줄일 수 있다
+    설계가 어렵고 어떤 작업이 먼저 끝날지 알 수 없다
+*/
+
+function f_after(p_arg1, p_arg2){
+    alert(p_arg1 + p_arg2);
+}
+
+//대표적인 비동기함수
+//setTimeout(fn,ms,매개변수1,..매개변수n);
+setTimeout(f_after,2000,"2","초");
+
+alert("누가먼저 실행?");
+</script>

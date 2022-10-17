@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #id_disp{
+            border-style: solid;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" id="id_file" accept=".jpg, .png, .jfif, .gif">
+    <div id="id_disp"></div>
+<script>
+    var v_fBtn = document.querySelector("#id_file");
+    var v_disp = document.querySelector("#id_disp");
+
+    v_fBtn.onchange = function(){
+        var v_file = v_fBtn.files[0];    // file 1개
+
+        // FileReader 객체 생성하고 메소드 이용해 정보 가공하고 result로 받기
+        // img 동적 요소 생성하고 appendChild
+        var rd = new FileReader();
+        rd.onload = function(){
+            var v_img = document.createElement("img");
+            v_img.src = rd.result;
+            v_img.width = 100;
+            v_disp.appendChild(v_img);
+        }
+        rd.readAsDataURL(v_file);
+    }
+    
+</script>
+</body>
+</html>
