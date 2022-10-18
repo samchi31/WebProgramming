@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $("input[type='file']").show();
+
+            $("input[type='file']").on('change',function(){
+                var v_file = $("input[type='file']");
+            });
+        });
+    </script>
+
+    <style>
+        input[type = "file"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="file" value="이미지추가">
+    <div id="disp">사진</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        // js - 요소당 하나씩
+        window.onload = function(){
+            var h4s = document.querySelectorAll("h4");
+            // 하나만 적용
+            h4s[1].style.color = "red";
+            // 전체 적용
+            for(var i=0;i<h4s.length;i++){
+                h4s[i].style.color = "gold";
+            }
+        };
+
+        // jquery
+        $(document).ready(function(){
+            var h4s = $('h4');
+            // 요소 일괄 적용 가능
+            h4s.css("color","orange");
+            // 요소 하나만 선택 eq(index)
+            h4s.eq(2).css("color","purple");
+        });
+    </script>
+</head>
+<body>
+    <h4>jquery1</h4>
+    <h4>jquery2</h4>
+    <h4>jquery3</h4>
+    <h4>jquery4</h4>
+</body>
+</html>

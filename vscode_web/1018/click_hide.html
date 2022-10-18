@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        function f_clickhide(p_this) {
+            // js
+            // alert(p_this.innerHTML);
+            // p_this.style.display = "none";
+
+            // jquery
+            $(p_this).hide();
+        };
+        // jquery에서 사용하는 문서 준비후 스크립트실행 기본명령 코드
+        // $(document).ready(function(){});
+        // 더 짧은 형태 가능
+        $(function () {
+            // jquery 이벤트 부여 - on()
+            $('#jq h5').on('click', function () {
+                $(this).hide();
+
+                // 버튼 보이기
+                if ($('#jq h5:visible').length < 1) {
+                    $('#jq button').show();
+                }
+            });
+
+            $('#jq button').on('click', function () {
+                $('#jq h5').show();
+                $(this).hide();
+            });
+
+            // js
+            var v_js = document.querySelectorAll("#js h5");
+            var v_cnt = 0;
+            for (var i = 0; i < v_js.length; i++) {
+                v_js[i].addEventListener('click', function () {
+                    // this = v_js[i]
+                    this.style.display = "none";
+                    v_cnt++;
+                    if (v_cnt == v_js.length) {
+                        document.querySelector('#js button').style.display = "block";
+                    }
+                });
+            }
+
+            document.querySelector('#js button').onclick = function () {
+                for (var i = 0; i < v_js.length; i++) {
+                    v_js[i].style.display = "block";
+                }
+                this.style.display = "none";
+                v_cnt = 0 ;
+            }
+        });
+    </script>
+
+    <style>
+        button {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h5 onclick="f_clickhide(this)">클릭하면 사라져요1</h5>
+    <h5 onclick="f_clickhide(this)">클릭하면 사라져요2</h5>
+    <h5 onclick="f_clickhide(this)">클릭하면 사라져요3</h5>
+    <h5 onclick="f_clickhide(this)">클릭하면 사라져요4</h5>
+
+    <div id="jq">
+        <h5>click - hide1</h5>
+        <h5>click - hide2</h5>
+        <h5>click - hide3</h5>
+        <h5>click - hide4</h5>
+        <button>show</button>
+    </div>
+
+    <div id="js">
+        <h5>누르고 - 사라짐1</h5>
+        <h5>누르고 - 사라짐2</h5>
+        <h5>누르고 - 사라짐3</h5>
+        <h5>누르고 - 사라짐4</h5>
+        <button>보이기</button>
+    </div>
+</body>
+
+</html>

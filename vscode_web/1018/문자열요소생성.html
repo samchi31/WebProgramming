@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            // // 현재 대상이 유일하기 때문에 단순하게 input으로 선택가능
+            // // 추후 요소가 늘어날 수 있음을 감안하여 더 세밀하게 선택자를 지정
+            // $('input[type = "button"]').on('click',function(){
+            //     var v_tagP = $('<p title="★" onclick="f_click(this)">Hi Jquery</p>');
+            //     // 대상을 출력영역에 붙여넣기
+            //     // appendChild() : node만 붙일 수 있다
+            //     // append() : node 및 DOM string 모두 붙여넣을 수 있다.
+            //     $('#id_disp').append(v_tagP);
+            // });
+
+
+            $('input[type = "button"]').eq(0).on('click',function(){
+                var v_tagP = $('<p title="★" onclick="f_click(this)">Hi Jquery</p>');
+                $('#id_disp').append(v_tagP);   //부모.append(자식)
+            });
+            $('input[type = "button"]').eq(1).on('click',function(){
+                var v_tagP = $('<p></p>',{
+                    'title' : '♥',
+                    'text' : 'Hello jQuery',
+                    'click' : function() {
+                        $(this).css('border','8px dashed pink');
+                    }
+                });
+                v_tagP.appendTo('#id_disp');    //자식.appendTo(부모)
+            });
+        });
+        function f_click(p_this){
+            // jquery 사용하기 위해 DOM 객체를 Jquery 객체로 변환
+            $(p_this).css("color","purple").css("font-size","2em");
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="$('tag attribute')">
+    <!-- properties에는 속성('key':'value') 또는 이벤트 설정 -->
+    <input type="button" value="$('tag', {properties})">
+    <div id="id_disp"></div>
+</body>
+</html>
