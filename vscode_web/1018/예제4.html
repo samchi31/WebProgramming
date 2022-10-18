@@ -1,27 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
-        $(function(){
-            $("input[type='file']").show();
+      $(function () {
+        $("input[type='file']").show();
 
-            $("input[type='file']").on('change',function(){
-                var v_file = $("input[type='file']");
-            });
+        $("input[type='file']").on("change", function () {
+          var v_file = this.files[0];
+          var rd = new FileReader();
+          // console.log(v_file);
+          rd.readAsDataURL(v_file);
+          rd.onload = function () {
+            $("#disp").append(
+              $("<img>", {
+                src: rd.result,
+                style: "width : 100px",
+                click: function () {
+                  $(this).css("border", "8px dashed pink");
+                }
+              })
+            );
+          };
         });
+
+        // $("#disp img").on("click",function(){
+        //   $(this).css("border", "8px dashed pink");
+        // });
+      });
     </script>
 
     <style>
-        input[type = "file"] {
-            display: none;
-        }
+      input[type="file"] {
+        display: none;
+      }
     </style>
-</head>
-<body>
-    <input type="file" value="이미지추가">
+  </head>
+
+  <body>
+    <input type="file" value="이미지추가" />
     <div id="disp">사진</div>
-</body>
+  </body>
 </html>
