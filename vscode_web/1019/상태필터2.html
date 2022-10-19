@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        $("input:button").on("click", function () {
+          var hobby = "";
+          // 입력양식선택자:상태필터
+          $(":checkbox:checked").each(function () {
+            hobby += $(this).val();
+          });
+          if(hobby == "") return;
+          alert("너의 취미는" + hobby);
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h4>취미 :</h4>
+    <input type="checkbox" value="유튜브" />유튜브
+    <input type="checkbox" value="영화" />영화
+    <input type="checkbox" value="게임" checked />게임
+    <input type="checkbox" value="만화" />만화
+    <input type="checkbox" value="애니" />애니
+    <input type="button" value="선택" />
+  </body>
+</html>

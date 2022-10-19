@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <script>
+      $(function () {
+        //input요소
+        $(":input").css("color", "navy").css("border", "solid navy");
+
+        //input type = button인 요소
+        $("input:button").css("background-color", "salmon");
+
+        //type 속성이 text, password인 요소
+        $(":text,:password").css("background-color", "yellow");
+
+        //type 속성이 radio, checkbox인 요소
+        // $(":radio,:checkbox").css("background-color", "orange");
+        $(":radio,:checkbox").css("border", "dashed skyblue");
+        // radio, checkbox는 고유 스타일이 있다 그 스타일 제거 후 적용가능
+
+        //type 속성이 submit인 요소
+        $(":submit").css("background-color", "orange");
+
+        //type 속성이 reset인 요소
+        $(":reset").css("border", "dotted red");
+
+        //type 속성이 file, image인 요소
+        $(":file,image").css("border", "outset springgreen");
+
+        //button요소와 input type이 button인 요소
+        $(":button").css("background-color", "lightgreen");
+      });
+    </script>
+
+    <style>
+      [type="radio"],
+      [type="checkbox"] {
+        appearance: none; /* 기본적용된 스타일을 제거해줌 */
+        width: 1em;
+        height: 1em;
+      }
+      [type="radio"] {
+        border-radius: 100%;
+      }
+      [type="radio"]:checked,
+      [type="checkbox"]:checked {
+        background-color: black;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="nofile.jsp" method="get">
+      Text : <input type="text" name="id" /> <br />
+      Password : <input type="password" name="pw" /> <br />
+      Radio :
+      <input type="radio" name="rdo" id="radioA" value="A" checked />A
+      <input type="radio" name="rdo" id="radioB" value="B" />B <br />
+      Checkbox :
+      <input type="checkbox" name="chkbox" id="checkbox1" value="1" /> 1
+      <input type="checkbox" name="chkbox" id="checkbox2" value="2" checked /> 2
+      <br />
+      TextArea <br />
+      <textarea rows="10" cols="30" id="myTextArea"></textarea> <br />
+      Image :
+      <input
+        type="image"
+        src="../images/루기아_공식_일러스트.png"
+        width="50"
+        height="50"
+      />
+      <br />
+      File :
+      <input type="file" /> <br />
+      Buttons :
+      <!-- form 안에서 button 사용시 submit 기능을 갖음 -->
+      <button>전송</button>
+      <button type="button" id="normalBtn">Normal</button>
+      <button type="submit" id="submitBtn">Submit</button>
+      <button type="reset" id="resetBtn">Reset</button> <br />
+
+      <input type="button" value="일반버튼" />
+      <input type="submit" value="전송버튼" />
+      <input type="reset" value="초기화버튼" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        
+        $('[value="text"]').on("click", function () {
+          console.log($("p").text());
+        });
+
+        $('[value="html"]').on("click", function () {
+          console.log($("p").html()); // 첫번쨰요소만 반환
+        });
+
+        $('[value="each"]').on("click", function () {
+          $("p").each(function (i,v) {      // i : index , v : value 필요시에만 매개변수를 지정하고 사용
+            // console.log($("p").html());  // p요소가 가진 갯수만큼 반복해서 첫번쨰 항목만 반환
+            // console.log($(this).html()); // each()안에서 this를 사용하면 순차적인 값을 반환받을 수 있음
+            console.log($('p').eq(i).html());   // 콜백함수의 매개변수 중 index를 활용하여 값을 반환받음
+            console.log($(v).html());           // 콜백함수 매개변수 중 value를 활용하여 값을 반환받음
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <!-- 대상요소 내용 가져오기/설정하기
+    text() : 태그를 포함하지 않은 내용 모두 가져오기
+    html() : 태그를 포함한 내용
+    each() : selector 대상, object 대상 문법형태가 약간 다름
+        $(selector).each(function(){})
+        $.each(object,function(){}) 
+    -->
+
+    <p>1<span>홍길동</span></p>
+    <p>2<span>고길동</span></p>
+    <p>3<span>박길동</span></p>
+
+    <input type="button" value="text" />
+    <input type="button" value="html" />
+    <input type="button" value="each" />
+  </body>
+</html>

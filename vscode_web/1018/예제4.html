@@ -6,7 +6,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script>
       $(function () {
-        $("input[type='file']").show();
+        $("body").append($("<input>",{
+          "type" : "file",
+          "value" : "이미지추가"
+        }));
 
         $("input[type='file']").on("change", function () {
           var v_file = this.files[0];
@@ -33,14 +36,12 @@
     </script>
 
     <style>
-      input[type="file"] {
-        display: none;
-      }
     </style>
   </head>
 
   <body>
-    <input type="file" value="이미지추가" />
+    <div id = "wrapper"></div>
+    <!-- <input type="file" value="이미지추가" /> -->
     <div id="disp">사진</div>
   </body>
 </html>

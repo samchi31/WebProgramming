@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      $(function () {
+        // js방식 - 단일 속성 변경
+        // document.querySelectorAll('input')[2].removeAttribute('disabled');// 속성제거
+        for (var i = 0; i < document.querySelectorAll("input").length; i++) {
+          document.querySelectorAll('input')[i].removeAttribute('disabled');
+        }
+
+				// jq 방식 - 일괄 속성 변경
+				$('*').attr('disabled',false);	//true 가능
+        $("form *:enabled").css("border", "3px ridge blue");
+        $("form *:disabled").css("border", "3px ridge red");
+      });
+    </script>
+  </head>
+  <body>
+    <form>
+      <input id="txt" disabled />
+      <input type="password" id="pw" disabled /><br />
+      <select id="sel" disabled>
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      <br />
+      <textarea id="mtline" cols="30" rows="10" disabled>multiLine</textarea>
+      <br />
+      <input type="button" value="확인" onclick="alert()" disabled />
+    </form>
+  </body>
+</html>
