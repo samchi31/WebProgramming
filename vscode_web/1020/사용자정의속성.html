@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+</head>
+<body>
+  <h4>사용자 정의 속성(User Defined Attributes)</h4>
+  <div data-friend="친구" data-hobby="취미" data-message-merong="메롱"></div>
+
+  <script>
+    var v_div = document.querySelector('div');
+    alert(v_div.dataset.friend);
+    alert(v_div.dataset.hobby);
+    // 하이픈은 camel 기법으로 변경하여 작성한다
+    alert(v_div.dataset.messageMerong);
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      // attr 은 속성 값, prop는 속성의 상태
+      $(function () {
+        $("#runBtn").on("click", function () {
+          var v_rst = "";
+          v_rst += "체크박스:" + $("#chk").prop("checked") + "<br>";
+          v_rst += "라디오박스:" + $("#rdo").prop("checked") + "<br>";
+          v_rst += "콤보박스:" + $("#sel option").eq(2).prop("selected") + "<br>";
+          v_rst += "텍스트필드:" + $("#txt").prop("readonly") + "<br>";
+
+          $("#disp").html(v_rst);
+        });
+
+        $("#chgBtn").on("click", function () {
+          var v_chk = $("#chk").prop("checked");
+          var v_rdo = $("#rdo").prop("checked");
+          var v_sel = $("#sel option").eq(2).prop("selected");
+          var v_txt = $("#txt").prop("readonly");
+
+          // 반대로 설정
+          $("#chk").prop("checked", !v_chk);
+          $("#rdo").prop("checked", !v_rdo);
+          $("#sel option").prop("selected", !v_sel);
+          $("#txt").prop("readonly", !v_txt);
+        });
+      });
+
+    </script>
+  </head>
+  <body>
+    <form action="">
+      <input type="checkbox" name="" id="chk" checked />
+      <input type="radio" name="" id="rdo" />
+      <select id="sel">
+        <option value=""></option>
+        <option value="1">일</option>
+        <option value="2" selected>이</option>
+        <option value="3">삼</option>
+      </select>
+      <input id="txt" value="가나다" readonly />
+      <input type="button" id="runBtn" value="실행-현재상태값 출력" />
+      <input type="button" id="chgBtn" value="변경-현재반대상태로 변경" />
+    </form>
+    <div id="disp"></div>
+  </body>
+</html>

@@ -9,11 +9,24 @@
         $("input:button").on("click", function () {
           var hobby = "";
           // 입력양식선택자:상태필터
-          $(":checkbox:checked").each(function () {
+          $(":checkbox:checked").each(function (i) {
+            if (i > 0) hobby += ", ";
             hobby += $(this).val();
           });
-          if(hobby == "") return;
+          if (hobby == "") hobby += "없다";
           alert("너의 취미는" + hobby);
+        });
+
+        // $(":button").on("click", function () {
+        $("select").on("change", function () {
+          // 단일 선택 값
+          // console.log($("#sel option:selected").val());
+          // 여러 선택 값
+          var opt = "";
+          $("#sel option:selected").each(function () {
+            opt += "\n" + $(this).val();
+          });
+          alert($("h4").eq(1).html() + opt);
         });
       });
     </script>
@@ -26,5 +39,15 @@
     <input type="checkbox" value="만화" />만화
     <input type="checkbox" value="애니" />애니
     <input type="button" value="선택" />
+
+    <h4>봄소식 :</h4>
+    <select id="sel" multiple size="5">
+      <option>개나리</option>
+      <option>진달래</option>
+      <option>민들레</option>
+      <option>목련</option>
+      <option>왕벚꽃</option>
+    </select>
+    <button>선택</button>
   </body>
 </html>

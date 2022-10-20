@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <input type="button" value="visible" />
+    <input type="button" value="hidden" />
+
+    <fieldset>
+      <legend>visible/hidden 예시문단</legend>
+      <p>보이는문단</p>
+      <p style="visibility: hidden">숨겨진문단</p>
+      <p style="display: none">자리를 차지하지 못한 문단</p>
+      <p style="opacity: 0">투명한 문단</p>
+    </fieldset>
+
+    <div id="disp"></div>
+
+    <script>
+      $("[value=visible]").on("click", function () {
+        var str = "<b>:visible</b>";
+        $("p:visible").each(function () {
+          str += $(this).html() + "\n";
+        });
+        $("#disp").html(str);
+      });
+
+      // hidden 요소 찾아서 출력
+      $("[value=hidden]").on("click", function () {
+        var str = "<b>:hidden</b>";
+        $("p:hidden").each(function () {
+          str += $(this).html() + "\n";
+        });
+        $("#disp").html(str);
+      });
+    </script>
+  </body>
+</html>

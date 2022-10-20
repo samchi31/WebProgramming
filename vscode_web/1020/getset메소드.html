@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div data-num="n1">div1</div>
+    <div data-num="n3">div2</div>
+    <div data-num="n5">div3</div>
+    <div data-num="n6">div4</div>
+    <hr />
+    <input name="n_txt" value="aa" />
+    <input name="n_txt" value="bb" />
+    <input name="n_txt" value="aa" />
+    <input name="n_txt" value="bb" />
+
+    <script>
+      // name=n_txt 텍스트 필드에 div2 내용 넣기
+      // $('input').val($('div').eq(1).html());
+      // $('[name="n_txt"]').val($('div').eq(1).html());
+
+      //div1, div4의 컨텐츠 내용을 '박카스D'로 바꾸기
+      $("div").html(function (p_idx, p_val) {
+        if (p_idx == 0 || p_idx == 3) {
+          return "박카스D";
+        }
+      });
+      // input 태그 중 value=bb인 속성 type을 radio로 변경
+      $("input").val(function (p_idx, p_val) {
+        if (p_val == "bb") {
+          // this.type = "radio";  //js 방식 - dom
+          $(this).attr("type", "radio"); //jq방식
+        }
+        return p_val;
+      });
+
+      // div 태그 innerHTML에 문자'd'가 있는것만
+      // 글자색 주황, 배경색 검정, font-size 2배로 변경
+      $("div").html(function (p_idx, p_val) {
+        if (p_val.indexOf("d") != -1) {
+          $(this)
+            .css("color", "pink")
+            .css("backgroundColor", "black")
+            .css("fontSize", "2em");
+        }
+      });
+
+      // div 태그 속성 data-num이 n홀수인 것만 테두리 설정
+      $('div').attr('data-num', function(i,v){
+        if(parseInt(v.substring(v.length-1))%2){
+          $(this).css("border","2px solid red").css('border-radius','50%');
+        }
+      })
+    </script>
+  </body>
+</html>

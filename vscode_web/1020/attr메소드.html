@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      img {
+        width: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>img 요소의 src 속성 중 파일명만 추출하여 title 속성 값으로 설정</h4>
+
+    <div>
+      <img src="../images/1.png" alt="" />
+      <img src="../images/2.png" alt="" />
+      <img src="../images/3.png" alt="" />
+      <img src="../images/4.png" alt="" />
+      <img src="../images/루기아_공식_일러스트.png" alt="" />
+    </div>
+
+    <script>
+      //get - 첫번째 항목만 반환
+      console.log($("img").attr("src"));
+
+      //set - 모든 항목에 일괄 적용
+      $("img").attr("alt", "동일함");
+
+      //콜백함수 내부에서 반환하는 값으로 title 속성을 적용하자
+      $("img").attr("title", function () {
+        // 첫번째 항목만 반환받기 떄문에
+        // 함수안에서 순차적으로 값을 받아 속성을 적용
+        var v_src = $(this).attr("src");
+        //substring(start[,end]); end 미포함
+        var st = v_src.lastIndexOf("/") + 1;
+        var ed = v_src.lastIndexOf(".");
+        var fname = v_src.substring(st, ed);
+        return fname;
+      });
+
+      // 속성 제거
+      $("img").eq(3).removeAttr("src");
+
+      // 여러가지 속성 설정
+      $("img").eq(3).attr({ src: "../images/4.png", title: "번호" });
+    </script>
+  </body>
+</html>
