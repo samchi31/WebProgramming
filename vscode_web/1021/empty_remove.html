@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      div {
+        background-color: lightblue;
+        height: 30px;
+      }
+      p {
+        border: 2px solid gray;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="button" value="empty" />
+    <input type="button" value="remove" />
+    <input type="button" value="removeSel" />
+
+    <div>
+      <p>Hello jQuery</p>
+    </div>
+    <div>
+      <p>Hi jQuery</p>
+    </div>
+    <p>안녕하세요</p>
+    <p id="pp">제이쿼리입니다</p>
+
+    <script>
+      // .on() -> addEventListener()
+      $("input:button")
+        .eq(0)
+        .on("click", function () {
+          $("div").eq(0).empty();
+        });
+
+      // .click() -> .onclick = function()
+      $('[value = "remove"]').click(function () {
+        // nth-child 인덱스는 1번부터
+        $(":nth-child(5)").remove();
+      });
+
+      $(":nth-child(3)").click(function () {
+        // $("p").remove('#pp');
+        $("p").remove(':nth-child(7)');
+      });
+    </script>
+  </body>
+</html>

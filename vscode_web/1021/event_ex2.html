@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../images/치렁_공식_일러스트.png" data-scr="../images/1.png" alt="" />
+    <img src="../images/팽도리.png" data-scr="../images/2.png" alt="" />
+    <img src="../images/우파_공식_일러스트.png" data-scr="../images/3.png" alt="" />
+    <img src="../images/피츄_공식_일러스트.png" data-scr="../images/4.png" alt="" />
+    <img src="../images/먹고자.png"  data-scr="../images/루기아_공식_일러스트.png"alt="" />
+
+
+    <script>
+      $("img").on({
+        /* event : function */ 
+        mouseenter: function () {
+          var v_src = $(this).attr('src');  // 원래 이미지
+          var v_src2 = $(this).attr('data-src');
+          $(this).attr('src',v_src2);
+        },
+        mouseleave: function () {
+        },
+        dblclick: function () {
+        }
+      });
+    </script>
+  </body>
+</html>

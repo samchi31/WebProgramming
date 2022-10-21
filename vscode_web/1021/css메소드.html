@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+      img {
+        width: 100px;
+        padding: 10px;
+        margin: 10px;
+        border: 5px solid slateblue;
+      }
+      .pColor {
+        color: lime;
+      }
+
+      .pBgYellow {
+        background-color: yellow;
+      }
+
+      .pBgPurple {
+        background-color: purple;
+      }
+
+      .pBgTeal {
+        background-color: teal;
+      }
+
+      .borderGray {
+        border: 5px groove gray;
+        border-radius: 20%;
+      }
+
+      .borderGold {
+        border: 7px groove gold;
+        border-radius: 20%;
+      }
+
+      div {
+        margin: 10px;
+        padding: 20px;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="button" id="btn" value="확인" />
+      <p>click</p>
+      <p>click</p>
+      <p>click</p>
+      <p>click</p>
+      <div></div>
+      <img src="../images/치렁_공식_일러스트.png" alt="" />
+      <img src="../images/팽도리.png" alt="" />
+      <img src="../images/우파_공식_일러스트.png" alt="" />
+      <img src="../images/피츄_공식_일러스트.png" alt="" />
+      <img src="../images/먹고자.png" alt="" />
+    </div>
+
+    <script>
+      $("#btn").on("click", function () {
+        // $('p').css('color','pink');
+        $("p").addClass("pColor"); // 동적으로
+      });
+
+      $("p").on("click", function () {
+        // $(this).addClass('pBgYellow');
+
+        // hasClass와 removeClass 를 이용하여 add-remove
+        // if($(this).hasClass('pBgPurple')){
+        //   $(this).removeClass('pBgPurple');
+        // } else {
+        //   $(this).addClass('pBgPurple');
+        // }
+        // 위 조건문과 동일
+        $(this).toggleClass("pBgTeal");
+      });
+
+      $("div:empty").on("mouseover", function () {
+        $(this).addClass("pBgYellow");
+      });
+      $("div:empty").on("mouseout", function () {
+        $(this).removeClass("pBgYellow");
+      });
+
+      // $('img').on('mouseover', function(){
+      //   $(this).addClass('borderGray');
+      // })
+      // $('img').on('mouseout', function(){
+      //   $(this).removeClass('borderGray');
+      // })
+
+      $("img").hover(
+        function () {
+          $(this).addClass("borderGold");
+        },
+        function () {
+          $(this).removeClass("borderGold");
+        }
+      );
+
+      $('img').click(function(){
+        $(this).toggleClass('borderGray');
+      })
+
+      // 높이 너비 메소드
+      console.log($('img').width(),"padding,margin,border 미포함");
+      console.log($('img').innerWidth(),"padding포함");
+      console.log($('img').outerWidth(),"padding,border 포함");
+
+    </script>
+  </body>
+</html>

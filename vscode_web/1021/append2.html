@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <style>
+    div {
+      font-size: 0;
+    }
+    img {
+      width: 80px;
+      margin: 2px;
+    }
+  </style>
+  <body>
+    <input type="button" value="append" />
+    <input type="button" value="preppend" />
+    <div>
+      <img src="../images/치렁_공식_일러스트.png" alt="" />
+      <img src="../images/팽도리.png" alt="" />
+      <img src="../images/우파_공식_일러스트.png" alt="" />
+      <img src="../images/피츄_공식_일러스트.png" alt="" />
+      <img src="../images/먹고자.png" alt="" />
+    </div>
+
+    <script>
+      $("input:button")
+        .eq(0)
+        .on("click", function () {
+          $("img").first().appendTo($("div"));
+        });
+
+      $("input:button")
+        .eq(1)
+        .on("click", function () {
+          $("img").last().prependTo($("div"));
+        });
+    </script>
+  </body>
+</html>

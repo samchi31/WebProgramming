@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      div {
+        width: 40%;
+        height: 50vh;
+        background-color: black;
+        color: lime;
+        /* text-align: center;  */
+        /* 원하는 방식으로 정렬되지 않아서 Flex를 이용해서 정렬 */
+        display: flex;
+        justify-content: center; /* 메인 x축 */
+        align-items: center; /* 교차 y축 */
+      }
+
+      span {
+        background-color: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <span> a </span>
+    </div>
+    <script>
+      $("div").on("mousedown", function (e) {
+        //var event; // event keyword를 이용해서 이벤트 정보에 접근가능 (매개변수 e와 같음)
+        var str = "";
+        str += "type:" + e.type + "<br>";
+        str += "target:" + e.target + "<br>";
+        str += `target-name: ${e.target.nodeName} <br>`;
+        str += `target-value: ${e.target.firstChild.nodeValue} <br>`;
+        str += `pageX: ${e.pageX} <br>`;
+        str += `pageY: ${e.pageY} <br>`;
+        str += `screenX: ${e.screenX} <br>`;
+        str += `screenY: ${e.screenY} <br>`;
+        str += `button: ${e.button} <br>`;
+
+        $("div").html(str);
+      });
+
+      $("div").on({
+        /* event : function */ 
+        mouseenter: function () {
+          $(this).css('background-color','salmon');
+        },
+        mouseleave: function () {
+          $(this).css('background-color','slateblue');
+        },
+        dblclick: function () {
+          $(this).css('background-color','antiquewhite');
+        }
+      });
+    </script>
+  </body>
+</html>
