@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function(){
+        $('#sido').change(function(){
+          // 구군 select 박스에 데이터 세팅 로직 구현
+          var v_opt = "<option value = '1'> 동구 </option>";
+          v_opt += "<option value = '2'> 서구 </option>";
+          v_opt += "<option value = '3'> 중구 </option>";
+          v_opt += "<option value = '4'> 유성구 </option>";
+          v_opt += "<option value = '5'> 대덕구 </option>";
+          $('#gugun').append(v_opt);
+        })
+        // 대상 요소가 가진 이벤트를 강제적으로 실행시키는 기능
+        // 이벤트를 직접 실행시키지 않아도 자동 발생 시키므로 다음 기능이 실행됨
+        $('#sido').trigger('change');
+      })
+    </script>
+  </head>
+  <body>
+    <select id="sido">
+      <option value="1">대전광역시</option>
+      <option value="2">서울특별시</option>
+      <option value="3">세종시</option>
+    </select>
+    <select id="gugun"></select>
+  </body>
+</html>

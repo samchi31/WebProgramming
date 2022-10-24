@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+      delegate(위임, 대리)
+      부모 이벤트를 물려받아 짖어된 선택자에 이벤트를 연결하는 방식
+      때문에, 동적인 요소도 이벤트 처리가 가능함
+    -->
+    <div class="wrapper">
+      <input type="button" value="버튼" class="btn" />
+      <input type="button" value="해제" id="clear" />
+    </div>
+
+    <script>
+      // $(parentSelector).delegate('childSelector', 'event', function(){})
+      $(".wrapper").on("click", ".btn", function () {
+        // 새버튼 생성
+        $("<input>", {
+          type: "button",
+          class: "btn",
+          value: "버튼",
+        }).appendTo(".wrapper");
+      });
+
+      // 해제버튼 - 이벤트 제거 해보세요
+      $("#clear").on("click", function () {
+        // 부모가 delegate를 가짐
+        $(".wrapper").off("click");
+      });
+    </script>
+  </body>
+</html>

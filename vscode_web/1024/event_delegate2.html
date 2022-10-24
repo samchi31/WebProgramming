@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <input type="file" />
+      <button id="add">파일선택영역 추가</button>
+    </div>
+
+    <script>
+      $("#add").on("click", function () {
+        var v_file = "<p>";
+        v_file += " <input type = 'file'>";
+        v_file += " <button class='del'>삭제</button>";
+        v_file += "</p>";
+        $("div").append(v_file);
+      });
+
+      // 동적요소에 이벤트 처리를 위해 delegate 방식 이벤트 연결
+      $(/* 부모요소 */"div").on("click", /* 자식요소 */".del", function () {
+        $(this).parent().remove();
+      });
+    </script>
+  </body>
+</html>

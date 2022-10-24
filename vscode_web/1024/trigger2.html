@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <style>
+      img {
+        width: 100px;
+      }
+
+      #btn {
+        display: none;
+      }
+
+      .shadow {
+        box-shadow: 4px 4px 1px lightblue;
+      }
+      .shadow1 {
+        box-shadow: 4px 4px 1px thistle;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="disp"></div>
+    <input type="button" value="돌리기" id="btn" />
+    <input type="button" value="방아쇠" id="trigger" />
+
+    <script>
+      // 제이쿼리 객체로 만들어진 변수임을 알리는 접두어 $를 붙임
+      var $disp = $("#disp"); // 출력공간 변수에 담음
+      // 원하는 갯수만큼 동적이미지 생성
+      var v_cls = "";
+      for (var i = 1; i <= 4; i++) {
+        if (i % 2) v_cls = "cls1";
+        else v_cls = "cls2";
+        $disp.append(
+          $("<img>")
+            .attr("src", "../images/" + i + ".png")
+            .attr("class", v_cls)
+            .css("width", 50 * i + "px")
+        );
+      }
+
+      // 이미지 rotation
+      $("#btn").on("click", function () {
+        var $child = $disp.children();
+
+        // filter()로 대상을 한번 더 걸러낸 후 addClass 적용
+        $child.filter(".cls1").addClass("shadow");
+        $child.filter(".cls2").addClass("shadow1");
+        $disp.append($child.eq(0)); // 첫번째 항목을 영역 뒤에 붙임 - 요소 이동
+      });
+
+      //trigger 지정
+      $("#trigger").on("click", function () {
+        $("#btn").trigger("click");
+      });
+    </script>
+  </body>
+</html>

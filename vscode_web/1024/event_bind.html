@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <!-- 
+    bind
+    실행(로딩)전 Document에 생성되어있는 요소에만 이벤트 핸들러가 동작
+    * 동적 요소에는 이벤트 처리기(핸들러)가 동작하지 않음 
+    -->
+
+    <div class="wrapper">
+      <input type="button" value="버튼" class="btn" />
+      <input type="button" value="해제" id="clear" />
+      <!-- 새로운 버튼이 추가되는 지점 -->
+    </div>
+
+    <script>
+      // $('selector').bind('event', function(){})
+
+      // 동적으로 만든 요소에 on 이벤트로 요소 생성 시 같은 클래스여도 이벤트 적용 안됨
+      $(".btn").on("click", function () {
+        // 새버튼 생성
+        $("<input>", {
+          type: "button",
+          class: "btn",
+          value: "버튼",
+        }).appendTo(".wrapper");
+      });
+
+      $('#clear').on('click', function(){
+        $('.btn').off('click');
+      })
+    </script>
+  </body>
+</html>
