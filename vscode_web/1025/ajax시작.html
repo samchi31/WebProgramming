@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+  // 1. 서버와의 통신을 위한 객체 생성
+  // XMLHttpRequest() : 서버와 상호작용하기 위해 사용한다 새로고침 없이 데이터를 받아오며 주로 ajax에 사용됨
+  var v_ajax = new XMLHttpRequest();
+
+  // 2. 요청 정보 설정
+  // open(method, 요청정볼를 전달할 서버(= 정보처리를 할 곳), 비동기여부(default = true));
+  v_ajax.open("get", "dummy.txt", true);
+
+  // // 3. 요청 정보를 서버로 전달
+  // // 일반적으로 이벤트(onreadystatechange)를 send보다 위에 작성
+  // // (처리내용이 너무 짧을 경우 일부 이벤트를 놓칠 수 있기 때문에)
+  // v_ajax.send();
+
+  // 4. 이벤트로 요청에 대한 응답 상태를 확인받고 결과를 반환 받을 수 있음
+  // onreadystatechange = 요청에 대한 응답을 받는 이벤트 리스너
+  v_ajax.onreadystatechange = function () {
+    // console.log(v_ajax.readyState);
+    // readyState : 통신상태를 전달받음 (4: 통신완료 응답준비 끝)
+    // status : 결과에 대한 생태코드를 전달받음 (200: ok)
+    if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+      alert(v_ajax.responseText);
+    }
+  };
+
+  // 3. 요청 정보를 서버로 전달
+  v_ajax.send();
+</script>

@@ -1,0 +1,22 @@
+<friends>
+  <friend>
+    <name>뽀로로</name>
+    <type>펭귄</type>
+    <alias>뽀롱뽀롱</alias>
+  </friend>
+  <friend>
+    <name>크롱</name>
+    <type>공룡</type>
+    <alias>개구쟁이</alias>
+  </friend>
+  <friend>
+    <name>루피</name>
+    <type>비버</type>
+    <alias>요리공주</alias>
+  </friend>
+  <friend>
+    <name>에디</name>
+    <type>여우</type>
+    <alias>똑똑박사</alias>
+  </friend>
+</friends>

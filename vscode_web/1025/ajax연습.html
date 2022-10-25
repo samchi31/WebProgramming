@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="disp"></div>
+    <input type="button" value="ajax호출" onclick="f_ajax()" />
+    <input type="button" value="csv호출" onclick="f_csv()" />
+    <input type="button" value="json호출" onclick="f_json()" />
+    <input type="button" value="xml호출" onclick="f_xml()" />
+
+    <script>
+      function f_ajax() {
+        var v_ajax = new XMLHttpRequest();
+        v_ajax.open("get", "dummy.txt");
+        v_ajax.onreadystatechange = function () {
+          if (v_ajax.readyState == 4 && v_ajax.status == 200) {
+            alert(v_ajax.responseText);
+          }
+        };
+        v_ajax.send();
+      }
+
+      // csv 데이터 받아오기
+      function f_csv() {
+        // ajax를 이용해 데이터를 받아오고
+        var v_csv = new XMLHttpRequest();
+        v_csv.open("get", "test.csv");
+        v_csv.onreadystatechange = function () {
+          if (v_csv.readyState == 4 && v_csv.status == 200) {
+            // console.log(v_csv.responseText);
+            f_test(v_csv.responseText);
+          }
+        };
+        v_csv.send();
+      }
+
+      function f_test(p_arg) {
+        var v_lines = p_arg.split("\n"); // 줄넘김 기호(line feed) 한 줄 씩 데이터
+        var v_table = "<table border=1>";
+        for (var i = 0; i < v_lines.length; i++) {
+          var v_str = v_lines[i].split(",");
+          v_table += "<tr>";
+          for (var j = 0; j < v_str.length; j++) {
+            v_table += "<td>" + v_str[j] + "</td>";
+          }
+          v_table += "</tr>";
+        }
+        v_table += "</table>";
+
+        document.getElementById("disp").innerHTML = v_table;
+      }
+
+      function f_json() {
+        var v_json = new XMLHttpRequest();
+        v_json.open("get", "test.json");
+        v_json.onreadystatechange = function () {
+          if (v_json.readyState == 4 && v_json.status == 200) {
+            // console.log(this.responseText);
+            var jsonObj = JSON.parse(this.responseText);
+            // console.log(jsonObj);
+            f_test2(jsonObj);
+          }
+        };
+        v_json.send();
+      }
+
+      function f_test2(p_arg) {
+        var v_table = "<table border=1>";
+        // v_table += "<tr><td>이름</td><td>종류</td><td>별명</td></tr>"
+        var v_vals = Object.values(p_arg);
+        var v_keys = Object.keys(v_vals[2]); // v_vals 배열정보 하나중 아무거나 선택 (key 값은 다 똑같다)
+        v_table += `<tr><td>${v_keys[0]}</td><td>${v_keys[1]}</td><td>${v_keys[2]}</td></tr>`;
+        for (var i = 0; i < p_arg.length; i++) {
+          v_table += "<tr>";
+          v_table += "<td>" + p_arg[i].name + "</td>";
+          v_table += "<td>" + p_arg[i]["type"] + "</td>";
+          v_table += "<td>" + p_arg[i]["alias"] + "</td>";
+          v_table += "</tr>";
+        }
+        v_table += "</table>";
+
+        document.getElementById("disp").innerHTML = v_table;
+      }
+
+      function f_xml() {
+        var v_xml = new XMLHttpRequest();
+        v_xml.open("get", "test.xml");
+        v_xml.onreadystatechange = function () {
+          if (this.status == 200 && this.readyState == 4) {
+            // console.log(this.responseXML);
+            f_test3(this.responseXML);
+          }
+        };
+        v_xml.send();
+      }
+
+      function f_test3(p_arg){
+        var friends = document.querySelectorAll("friend");
+
+        var v_table = "<table border=1>";
+        v_table += `<tr><td>이름</td><td>종류</td><td>별명</td></tr>`;
+        for (var i = 0; i < friends.length; i++) {
+          var children = friends[i].children;
+          v_table += "<tr>";
+          for(var j=0;j<children.length;j++){
+            v_table += "<td>" + children[j].innerHTML + "</td>";
+          }
+          v_table += "</tr>";
+        }
+        v_table += "</table>";
+
+        document.getElementById("disp").innerHTML = v_table;
+      }
+    </script>
+  </body>
+</html>
