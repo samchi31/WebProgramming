@@ -98,7 +98,9 @@
       }
 
       function f_test3(p_arg){
-        var friends = document.querySelectorAll("friend");
+        // html document 에는 friend가 없다 xml에 있는거임
+        // var friends = document.querySelectorAll("friend");
+        var friends = p_arg.querySelectorAll("friend");
 
         var v_table = "<table border=1>";
         v_table += `<tr><td>이름</td><td>종류</td><td>별명</td></tr>`;

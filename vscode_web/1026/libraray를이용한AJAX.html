@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+  $.ajax({
+    type : 'get',    // type은 method라는 속성으로도 접근가능
+    // data : '',    // 넘길 데이터 없을 경우 생략가능
+    url : '../1025/test.json',
+    success : function(rst){  // 성공시 매개변수를 통해 응답데이터 전달됨
+      console.log("결과데이터 : " , rst);
+    },
+    error : function(xhr){    //xml http request 객체
+      alert(xhr.status);      // 에러 발생시 객체를 통해 정보 에러코드 확인가능
+    },                        // 코드가 200 인데 에러 뜰 시 -> json 파일 내용의 문제
+    dataType : 'json'         // 전달받을 데이터 타입   // 'json' : JS 객체형태로 자동변환해줌
+  });
+
+  // 단축메뉴 - 속성에 대한 값만 대입해서 결과를 빠르게 얻을 수 있다
+  // error상태를 확인할 수 없기 때문에 익숙해지고 나서 사용할 것을 권장
+  // $.get(url, [data,] success, dataType), $.post(url, [data,] success, dataType). $.getJSON(url, [data,] success)
+  $.get(
+    "../1025/test.json",
+    function (rst) {
+      console.log("다시 결과 : ", rst);
+    },
+    "json"
+  );
+</script>
