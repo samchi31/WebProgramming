@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <script>
+      function jsonFlickrFeed(p_data) {
+        console.log(p_data);
+        var objArr = p_data.items;
+        for (var i = 0; i < objArr.length; i++) {
+          console.log(objArr[i].media.m);
+          var v_img = $("<img>", { src: objArr[i].media.m });
+          //var v_img = document.createElement("img");
+          v_img.src = objArr[i].media.m;
+          $("body").append(v_img);
+        }
+      }
+    </script>
+    <!-- 
+      JSONP(Javascript Object Notation Padding)
+      <script> 태그를 이용한 꼼수로서 json 데이터를 가져오기 위한 일종으 ㅣ편법
+      <script> ㅐㅌ그를 통해 외부에서 가져오는 리소스는 sop 정책에 적용대상이 아닌 점을 이용
+    -->
+    <script src="https://www.flickr.com/services/feeds/photos_public.gne?tags=seaturtle&format=json"></script>
+  </body>
+</html>
