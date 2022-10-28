@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+  var v_url =
+    "https://www.flickr.com/services/feeds/photos_public.gne?tags=horsefieldTortoise&format=json";
+  $.ajax({
+    url: v_url,
+    dataType: "jsonp",
+    jsonpCallback: "jsonFlickrFeed",
+    success: function (obj) {
+      // console.log(obj);
+      $.each(obj.items, function () {
+        $("<img>", { src: this.media.m, alt: "flickr 무료 이미지" }).appendTo(
+          "body"
+        );
+      });
+    },
+    error: function (xhr) {
+      alert(xhr.status);
+    },
+  });
+</script>
