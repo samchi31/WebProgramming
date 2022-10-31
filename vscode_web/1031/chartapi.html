@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/random.js"></script>
+  </head>
+  <body>
+    <!-- 
+      <canvas> 그래픽용
+        브라우저 기반 게임회사 또는 예쁜 웹 컴포넌트를 만드는 회사에서 주로 사용
+        일반적인 웹 개발자는 거의 사용하지 않음
+    -->
+    <div style="width: 400px; height: 400px">
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div>
+
+    <script>
+      // getContext(): 드로잉 컨텍스트에 액세스
+      const ctx = document.getElementById("myChart").getContext("2d");
+      const myChart = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: ["캠벨얼리", "거봉", "샤인머스켓", "기타"],
+          datasets: [
+            {
+              label: "#2016",
+              data: [61.4, 10.5, 20, 30],
+              backgroundColor: f_color(4),
+              borderColor: f_color(4),
+              borderWidth: 1,
+            },
+            {
+              type: "line" /* 그래프 형태, bar(기본)와 line 만이 같이 사용 가능 */,
+              label: "#2021",
+              data: [36.6, 21.0, 31.6, 10.5],
+              backgroundColor: f_color(4),
+              borderColor: f_color(4),
+              borderWidth: 1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      function f_color(p_arg) {
+        // 생성할 랜덤항목의 수를 받아서 만듬
+        var v_colors = [];
+        var v_colorStr = "";
+        // rgba(,,,) 형태의 데이터를 배열에 담기
+        for (var i = 0; i <= p_arg; i++) {
+          v_colorStr = `rgba(${f_rand()},${f_rand()},${f_rand()},${f_randAlpha()})`;
+          v_colors.push(v_colorStr);
+        }
+        // 배열 값 리턴
+        return v_colors;
+      }f_color(4)
+
+      function f_rand(){
+        // return parseInt(Math.random()* 256);
+        return Math.floor(Math.random()* 256);
+      }
+
+      function f_randAlpha(){
+        return "0." + Math.floor(Math.random()* 9);
+      }
+    </script>
+  </body>
+</html>
