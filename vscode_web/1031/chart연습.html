@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="../js/random.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   </head>
   <body>
     <!-- 
@@ -19,18 +20,20 @@
     <div style="width: 400px; height: 400px">
       <canvas id="myChart" width="400" height="400"></canvas>
     </div>
+    <input type="button" value="type update" onclick="f_update()" />
+    <input type="button" value="ajax data" onclick="f_update2()" />
 
     <script>
       // getContext(): 드로잉 컨텍스트에 액세스
       const ctx = document.getElementById("myChart").getContext("2d");
       const myChart = new Chart(ctx, {
-        type: "bar",  // bar, line pie, radar, doughnut
+        type: "bar", // bar, line pie, radar, doughnut
         data: {
           labels: ["캠벨얼리", "거봉", "샤인머스켓", "기타"],
           datasets: [
             {
               label: "#2016",
-              data: [61.4, 10.5, 20, 10.8],
+              data: [61.4, 23.8, 1.9, 12.9],
               backgroundColor: f_color(4),
               borderColor: f_color(4),
               borderWidth: 1,
@@ -53,13 +56,13 @@
           },
         },
       });
-      console.log(myChart.data.labels);
-      console.log(myChart.data.datasets);
-      console.log(myChart.data.datasets[1].type);
-      myChart.data.datasets[1].type = "bar";
-      // 변경된 정보를 업데이트해야 화면에 표현됨
-      // chart.js에서 가장중요
-      myChart.update();
+      // console.log(myChart.data.labels);
+      // console.log(myChart.data.datasets);
+      // console.log(myChart.data.datasets[1].type);
+      // myChart.data.datasets[1].type = "bar";
+      // // 변경된 정보를 업데이트해야 화면에 표현됨
+      // // chart.js에서 가장중요
+      // myChart.update();
 
       function f_color(p_arg) {
         // 생성할 랜덤항목의 수를 받아서 만듬
@@ -72,15 +75,61 @@
         }
         // 배열 값 리턴
         return v_colors;
-      }f_color(4)
+      }
+      f_color(4);
 
-      function f_rand(){
+      function f_rand() {
         // return parseInt(Math.random()* 256);
-        return Math.floor(Math.random()* 256);
+        return Math.floor(Math.random() * 256);
       }
 
-      function f_randAlpha(){
-        return "0." + Math.floor(Math.random()* 9);
+      function f_randAlpha() {
+        return "0." + Math.floor(Math.random() * 9);
+      }
+
+      function f_update() {
+        var v_data1 = [];
+        var v_data2 = [];
+        for (var i = 0; i <= 4; i++) {
+          var v_ran = Math.ceil(Math.random() * 100);
+          v_data1.push(v_ran);
+          v_data2.push(Math.ceil(Math.random() * 100));
+        }
+
+        myChart.data.datasets[0].data = v_data1;
+        myChart.data.datasets[1].data = v_data2;
+
+        var v_type = ["bar", "line", "pie", "radar", "doughnut"];
+        var v_ranSu = parseInt(Math.random() * v_type.length);
+
+        myChart.data.datasets[0].type = v_type[v_ranSu];
+        myChart.data.datasets[1].type = v_type[v_ranSu];
+        myChart.update();
+      }
+
+      function f_update2() {
+        var req = new XMLHttpRequest();
+        req.open("get", "testData.json");
+        req.onreadystatechange = function () {
+          if (req.readyState == 4 && req.status == 200) {
+            // console.log(req.responseText);
+            var v_json = JSON.parse(req.responseText); // json object => js object
+            f_updateChart(v_json);
+          }
+        };
+        req.send();
+      }
+
+      var isClick = false;
+      function f_updateChart(p_arg) {
+        myChart.data.labels = p_arg.label;
+        if (!isClick) {
+          myChart.data.datasets.splice(0, 1);
+        }
+        myChart.data.datasets[0].label = p_arg.name;
+        myChart.data.datasets[0].data = p_arg.score;
+        myChart.update();
+        isClick = true;
       }
     </script>
   </body>
