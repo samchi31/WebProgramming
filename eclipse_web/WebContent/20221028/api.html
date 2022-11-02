@@ -17,7 +17,7 @@
 		function f_myServer() {
 			var keyword = document.querySelector("#search").value;
 			var req = new XMLHttpRequest();
-			req.open('get', '/Api?kwd=' + keyword, true);
+			req.open('get', '/webPro/Api?kwd=' + keyword, true);
 			req.onreadystatechange = function() {
 				if (req.readyState == 4 && req.status == 200) {
 					// console.log(req.responseText);	// rss 형식 뉴스데이터

@@ -19,6 +19,7 @@
 	String sql = "select mem_id from member where mem_id = '" + uId + "' and mem_pass = '" + uPw + "'";
 	ResultSet rs = stmt.executeQuery(sql);
 	// System.out.println(rs.next());		// boolean 값으로 값의 유무를 확인
+// 	System.out.println(sql);
 
 	if (rs.next()) {
 %>

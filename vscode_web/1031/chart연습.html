@@ -125,10 +125,10 @@
         myChart.data.labels = p_arg.label;
         if (!isClick) {
           myChart.data.datasets.splice(0, 1);
+          myChart.data.datasets[0].label = p_arg.name;
+          myChart.data.datasets[0].data = p_arg.score;
+          myChart.update();
         }
-        myChart.data.datasets[0].label = p_arg.name;
-        myChart.data.datasets[0].data = p_arg.score;
-        myChart.update();
         isClick = true;
       }
     </script>
