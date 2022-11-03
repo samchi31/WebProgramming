@@ -37,7 +37,7 @@
 					class="btn btn-success col-xs-12">
 			</div>
 			<div class="col-xs-12">
-				<a href="join.html">회원가입하기</a>
+				<a href="/webPro/Join">회원가입하기</a>
 			</div>
 		</div>
 	</div>

@@ -42,15 +42,28 @@
   </style>
 </head>
 <body>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <%@ include file ="./header.jsp" %>
   <%@ include file ="./aside1.jsp" %>
-    <div class="col-sm-8 text-left"> 
-      <h1>Welcome</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <hr>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
-    </div>
+  
+  	<c:set var="joinCd"  value="${sessionScope.joinCode}" ></c:set>
+<%--   	////<c:out value="${joinCd}"></c:out>//// --%>
+  	
+  	<c:if test="${joinCd eq 'yes' }">
+  		<%@ include file="./join.jsp" %>
+  		<% session.removeAttribute("joinCode"); %>
+  	</c:if>
+  	
+  	<c:if test="${joinCd ne 'yes' }">
+  		<div class="col-sm-8 text-left"> 
+        <h1>Welcome</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <hr>
+        <h3>Test</h3>
+        <p>Lorem ipsum...</p>
+      </div>
+  	</c:if>
+ 
   <%@ include file ="aside2.jsp" %>
   <%@ include file ="footer.jsp" %>
 

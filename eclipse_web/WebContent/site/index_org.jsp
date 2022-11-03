@@ -42,17 +42,33 @@
   </style>
 </head>
 <body>
-  <%@ include file ="header.jsp" %>
-  <%@ include file ="../../site/aside1.jsp" %>
-    <div class="col-sm-8 text-left"> 
+  <%@ include file ="./header.jsp" %>
+  <%@ include file ="./aside1.jsp" %>
+  
+  <%
+//   	System.out.println(session.getAttribute("joinCode"));
+  String joinCd = (String)session.getAttribute("joinCode");
+  if(joinCd == "yes"){
+	  // 회원가입페이지 보이기...
+  %>
+	  <%@ include file="./join.jsp" %>
+	  <% session.removeAttribute("joinCode"); %>
+  <%
+  } else {
+	  // 그냥 메인페이지가 보이기..
+  %>
+	  <div class="col-sm-8 text-left"> 
       <h1>Welcome</h1>
-      <p>WEB-INFO inner index.jsp...</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
       <hr>
       <h3>Test</h3>
       <p>Lorem ipsum...</p>
-    </div>
-  <%@ include file ="/site/aside2.jsp" %>
-  <%@ include file ="/site/footer.jsp" %>
+      </div>
+  <%
+  }
+  %>
+  <%@ include file ="aside2.jsp" %>
+  <%@ include file ="footer.jsp" %>
 
 </body>
 </html>
