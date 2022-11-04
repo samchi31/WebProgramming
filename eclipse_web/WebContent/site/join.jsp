@@ -13,18 +13,24 @@
 </head>
 <body>
 
-	<!-- id 중복 체크, 주소 api 적용, 정규식패턴 적용해서 validation체크 -->
+	<%-- id 중복 체크, 주소 api 적용, 정규식패턴 적용해서 validation체크 --%>
+	
+	<%-- 
+		정규식 패턴을 적용해서 validation 체크
+		정규식 regular expression( regex ) 패턴
+		: 정해진 규칙을 이용해 텍스트에서 정보를 추출하는 패턴 
+	--%>
 
 	<div class="col-sm-8">
 		<h4>회원가입</h4>
 		<hr>
-		<form class="form-horizontal" method="post" onsubmit="return false;">
+		<form class="form-horizontal" method="post" onsubmit="return valid();">
 			<div class="form-group">
 				<label for="id" class="control-label col-sm-2">아이디</label> <span
 					class="sp"></span>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="id"
-						placeholder="Enter id" name="mem_id">
+						placeholder="Enter id" name="mem_id" required pattern="[a-zA-Z][a-zA-Z0-9]{3,7}">
 				</div>
 				<div class="col-sm-6" style="text-align: left;">
 					<button type="button" class="btn btn-success btn-sm" id="idChk">중복검사</button>
@@ -34,9 +40,10 @@
 
 			<div class="form-group">
 				<label for="pass" class="control-label col-sm-2">비밀번호</label>
+<%-- 				임의문자(.)를 대상으로 최소 갯수(*?)의 패턴을 찾음 --%>
 				<div class="col-sm-4">
 					<input type="password" class="form-control" id="pass"
-						name="mem_pass">
+						name="mem_pass" required pattern="(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#$%^&*()_+|]).{8,12}">
 				</div>
 			</div>
 
@@ -44,14 +51,14 @@
 				<label for="name" class="control-label col-sm-2">이름</label> <span
 					class="sp"></span>
 				<div class="col-sm-4">
-					<input type="text" class="form-control" id="name" name="mem_name">
+					<input type="text" class="form-control" id="name" name="mem_name" required pattern="[가-힣]{2,8}">
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="bir" class="control-label col-sm-2">생년월일</label>
 				<div class="col-sm-4">
-					<input type="date" class="form-control" id="bir" name="mem_bir">
+					<input type="date" class="form-control" id="bir" name="mem_bir" required>
 					<span class="sp"></span>
 				</div>
 			</div>
@@ -60,7 +67,7 @@
 				<label for="hp" class="control-label col-sm-2">연락처</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="hp" name="mem_hp"
-						placeholder="010-0000-0000">
+						placeholder="010-0000-0000" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}">
 				</div>
 				<span class="sp"></span>
 			</div>
@@ -68,7 +75,7 @@
 			<div class="form-group">
 				<label for="mail" class="control-label col-sm-2">이메일</label>
 				<div class="col-sm-4">
-					<input type="email" class="form-control" id="mail" name="mem_mail">
+					<input type="email" class="form-control" id="mail" name="mem_mail" pattern="[0-9a-zA-Z]+@[0-9a-zA-z]+(\.[a-z]+){1,2}">
 				</div>
 				<span class="sp"></span>
 			</div>
@@ -77,7 +84,7 @@
 				<label for="add1" class="control-label col-sm-2">우편번호</label>
 				<div class="col-sm-4">
 					<input type="text" class="form-control" id="postAddr"
-						name="mem_add1">
+						name="mem_zip" required>
 				</div>
 				<div class="col-sm-2">
 					<button type="button" id="addrBtn" class="btn btn-info btn-sm">주소검색</button>
@@ -87,14 +94,14 @@
 			<div class="form-group">
 				<label for="add1" class="control-label col-sm-2">주소</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="addr1" name="mem_add1">
+					<input type="text" class="form-control" id="addr1" name="mem_add1" required>
 				</div>
 			</div>
 
 			<div class="form-group">
 				<label for="add2" class="control-label col-sm-2">상세주소</label>
 				<div class="col-sm-6">
-					<input type="text" class="form-control" id="addr2" name="mem_add2">
+					<input type="text" class="form-control" id="addr2" name="mem_add2" required>
 				</div>
 			</div>
 
@@ -108,12 +115,12 @@
 	</div>
 </body>
 
-<!-- 다음 지도 cdn -->
+<%-- 다음 지도 cdn --%>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-	$('#id').on('keyup', function() {
-		// 	$('#idChk').click(function() {})
+// 	$('#id').on('keyup', function() {});
+	$('#idChk').click(function() {
 		var v_id = $('#id').val();
 		var v_disp = $('#disp');
 
@@ -142,6 +149,45 @@
 			}
 		});
 	});
+	
+	function valid(){ 
+		// 데이터를 받아와서 ajax로 서버에 전송(insert)
+		
+		// 이전 방식으로는 각 필드의 데이터를 변수에 담아서 처리하는 번거로움이 있음
+		// 이를 해결하고자 jQuery에서 제공하는 serialize()를 사용한다
+		var v_data = $('form').serialize();
+		console.log('직렬화된 데이터 >> ' + v_data);
+		
+		/*
+		ajax로 데이터를 보낼 때 서버가 이해할 수 있는 방식으로 데이터 형식을 변환해야 함
+		이때 객체를 직렬화하여 데이터를 하나의 객체로 모아 덩어리로 전송한다
+		
+		직렬화(Obj => JSON) : 자바 내부에서 사용하는 객체 또는 데이터를 외부에서 
+				 사용 가능한 byte형태로 변환하는 기술 (serializing,marshal,stringify)
+		역직렬화(JSON => Obj) : byte로 변환된 데이터를 원래의 객체 또는 데이터로 변환하는 기술
+				   (deserializing,unmarshal,parse)
+		*/
+		$.ajax({
+			type : 'post',
+			url : '<%=request.getContextPath()%>/site/member.jsp',
+			data : v_data,
+			dataType:'json',
+			success: function(rst){
+				console.log(rst);
+			},
+			error: function(xhr){
+				alert("상태:" + xhr.status);
+			}
+		});
+		
+	};
+	
+	
+	
+	
+	
+	
+	
 
 	// 다음 지도 api 팝업 지도 붙여넣기
 	$('#addrBtn').on('click',function() {
