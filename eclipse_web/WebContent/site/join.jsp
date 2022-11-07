@@ -19,6 +19,7 @@
 		정규식 패턴을 적용해서 validation 체크
 		정규식 regular expression( regex ) 패턴
 		: 정해진 규칙을 이용해 텍스트에서 정보를 추출하는 패턴 
+		
 	--%>
 
 	<div class="col-sm-8">
@@ -139,8 +140,10 @@
 				// 				console.log(rst);
 				if (rst.code == "ok") {
 					v_disp.text(rst.msg).css('color', 'green');
+					alert("가입 성공");
+					location.href = "<%request.getContextPath()%>/site/login.html";
 				} else {
-					v_disp.text(rst.msg).css('color', 'red');
+					v_disp.text(rst.msg).css('color', 'orange');
 				}
 
 			},
@@ -151,12 +154,15 @@
 	});
 	
 	function valid(){ 
+		// onsubmit을 하게 되면 함수를 호출하고 ajax()통신 후 받아온 응답을 처리하고 나면 reload(새로고침)이 발생
+		// => reload를 막아줘야함
+		event.preventDefault();
 		// 데이터를 받아와서 ajax로 서버에 전송(insert)
 		
 		// 이전 방식으로는 각 필드의 데이터를 변수에 담아서 처리하는 번거로움이 있음
 		// 이를 해결하고자 jQuery에서 제공하는 serialize()를 사용한다
 		var v_data = $('form').serialize();
-		console.log('직렬화된 데이터 >> ' + v_data);
+		//console.log('직렬화된 데이터 >> ' + v_data);
 		
 		/*
 		ajax로 데이터를 보낼 때 서버가 이해할 수 있는 방식으로 데이터 형식을 변환해야 함
@@ -173,7 +179,12 @@
 			data : v_data,
 			dataType:'json',
 			success: function(rst){
-				console.log(rst);
+				//console.log(rst);
+				if(rst == 1){
+					$('#joinspan').text("가입성공").css('color','blue');
+				} else {
+					$('#joinspan').text("가입실패").css('color','red');
+				}
 			},
 			error: function(xhr){
 				alert("상태:" + xhr.status);
