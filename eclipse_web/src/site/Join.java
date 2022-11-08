@@ -30,6 +30,9 @@ public class Join extends HttpServlet {
 		// 결과를 처리하고 응답데이터를 담은 객체를 view페이지로 보내줘야 함
 		RequestDispatcher dispatcher = request.getRequestDispatcher("site/index.jsp");
 		dispatcher.forward(request, response);
+		
+//		// 리다이렉트
+//		response.sendRedirect("site/index.jsp");
 	}
 
 //	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

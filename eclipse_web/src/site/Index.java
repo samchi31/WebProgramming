@@ -16,6 +16,9 @@ public class Index extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// board게시판정보를 읽어와서 응답
+		// mvc2패턴
 		request.getRequestDispatcher("WEB-INF/test/index.jsp").forward(request, response);
 	}
 

@@ -119,6 +119,7 @@
 <%-- 다음 지도 cdn --%>
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.min.js"></script>
 <script>
 // 	$('#id').on('keyup', function() {});
 	$('#idChk').click(function() {
@@ -140,8 +141,6 @@
 				// 				console.log(rst);
 				if (rst.code == "ok") {
 					v_disp.text(rst.msg).css('color', 'green');
-					alert("가입 성공");
-					location.href = "<%request.getContextPath()%>/site/login.html";
 				} else {
 					v_disp.text(rst.msg).css('color', 'orange');
 				}
@@ -161,8 +160,10 @@
 		
 		// 이전 방식으로는 각 필드의 데이터를 변수에 담아서 처리하는 번거로움이 있음
 		// 이를 해결하고자 jQuery에서 제공하는 serialize()를 사용한다
-		var v_data = $('form').serialize();
-		//console.log('직렬화된 데이터 >> ' + v_data);
+// 		var v_data = $('form').serialize();		// urlEncoded  형식(key=value&k=v..)의 형태
+// 		var v_data = $('form').serializeArray(); 		//object array형식([{},{},..])
+		var v_data = $('form').serializeJSON(); 		// json object 형식 ({"key":"value"})
+		console.log('직렬화된 데이터 >> ' + v_data);
 		
 		/*
 		ajax로 데이터를 보낼 때 서버가 이해할 수 있는 방식으로 데이터 형식을 변환해야 함
@@ -172,16 +173,26 @@
 				 사용 가능한 byte형태로 변환하는 기술 (serializing,marshal,stringify)
 		역직렬화(JSON => Obj) : byte로 변환된 데이터를 원래의 객체 또는 데이터로 변환하는 기술
 				   (deserializing,unmarshal,parse)
+		
+		
+		jQuery가 아닌 자바스크립트(XHR객채사용)로 ajax통신 시 요청데이터에 content-type을 꼭 명시해야 하지만,
+		jQuery에서는 자동으로 해주므로 생략가능
 		*/
 		$.ajax({
 			type : 'post',
-			url : '<%=request.getContextPath()%>/site/member.jsp',
-			data : v_data,
+<%-- 			url : '<%=request.getContextPath()%>/site/member.jsp', --%>
+<%-- 			url : '<%=request.getContextPath()%>/site/member_arr.jsp', --%>
+			url : '<%=request.getContextPath()%>/site/member_json.jsp',
+// 			content-type : 'application/json',
+// 			data : v_data,						// serialize() 사용시 넘겨주는 데이터
+			data : JSON.stringify(v_data),		// serializeArray() 사용 시 직렬화 해서 넘겨준다
 			dataType:'json',
 			success: function(rst){
 				//console.log(rst);
 				if(rst == 1){
 					$('#joinspan').text("가입성공").css('color','blue');
+					alert("가입 성공");
+					location.href = "<%=request.getContextPath() %>/site/login.jsp";
 				} else {
 					$('#joinspan').text("가입실패").css('color','red');
 				}
@@ -192,10 +203,7 @@
 		});
 		
 	};
-	
-	
-	
-	
+		
 	
 	
 	
