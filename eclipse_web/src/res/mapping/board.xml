@@ -5,9 +5,42 @@
     
 <sqlMap namespace="board">
 
-<select id="countList" >
+<select id="countList" resultClass="int">
 
+	SELECT COUNT(*) FROM BOARD
 
 </select>
+
+<!-- 
+많은 패키지 내부에 위치하는 클래스의 경로가 길 경우 alias를 등록하여 사용
+별명을 등록하는 위치는 현재 xml 또는 config.xml이 가능
+ -->
+
+<select id="boardList" resultClass="boardVO" parameterClass="map">
+	
+	<!-- CDATA: 조건식에 사용되는 기호가 태그로 인식되지 않도록 하는 문자 데이터 -->
+	SELECT A.* 
+	FROM (
+		SELECT ROWNUM AS RNUM, B.* 
+		FROM (
+			SELECT * FROM BOARD  
+			ORDER BY NUM DESC ) B
+	<![CDATA[
+		WHERE ROWNUM <= #end# ) A
+	WHERE A.RNUM >= #start#
+	]]>
+	
+</select>
+
+<insert id="insertBoard" parameterClass="boardVO">
+<!-- 	관계형 데이터베이스에서 지원하는 시퀀스 정보를 insert시 추가된 데이터의 기본키로 반환받음 -->
+	<selectKey keyProperty="num" resultClass="int">
+		SELECT BOARD_NUM_SEQ.NEXTVAL FROM DUAL
+	</selectKey>
+	insert into board (num, subject, writer, mail, password, content, hit, wip, wdate)
+	values (#num#, #subject#, #writer#, #mail#, #password#, #content#,  0, #wip#, sysdate)
+
+</insert>
+
 
 </sqlMap>

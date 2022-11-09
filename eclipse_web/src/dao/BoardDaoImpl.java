@@ -1,19 +1,22 @@
 package dao;
 
 import java.sql.SQLException;
+import java.util.List;
+import java.util.Map;
 
 import com.ibatis.sqlmap.client.SqlMapClient;
 
 import res.config.BuildedSqlMapClient;
+import vo.BoardVO;
 
 public class BoardDaoImpl implements IBoardDao{
 	private SqlMapClient smc;
-	private static BoardDaoImpl instance;
+	private static IBoardDao instance;
 	private BoardDaoImpl() {
 		smc = BuildedSqlMapClient.getSqlMapClient();
 	}
 	
-	public static BoardDaoImpl getInstance() {
+	public static IBoardDao getInstance() {
 		if(instance == null) {
 			instance = new BoardDaoImpl();
 		}
@@ -22,11 +25,18 @@ public class BoardDaoImpl implements IBoardDao{
 	
 
 	@Override
-	public int countList() throws SQLException {
-		smc.queryForObject("board.countList");
-		
-		
-		return 0;
+	public int countList() throws SQLException {			
+		return (int)smc.queryForObject("board.countList");
+	}
+
+	@Override
+	public List<BoardVO> boardList(Map<String, Object> map) throws SQLException {
+		return smc.queryForList("board.boardList",map);
+	}
+
+	@Override
+	public int insertBoard(BoardVO vo) throws SQLException{
+		return (int) smc.insert("board.insertBoard",vo);
 	}
 
 }
