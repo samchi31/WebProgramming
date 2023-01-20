@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//java의 ArrayList 맹글어보깅(사실 스크립의 배열과 거의 같음)
+//class
+
+// 직접 지원하는 name space가 없는 관계로  빈 객체를 활용
+
+// 프로젝트 진행시 , 변수명,메소드명 규칙등을 간단히 정하고 시작!
+// 보통 접두어을 잘 정해 놓으면 큰 문제는 안 생김!
+
+const java = {};
+java.util = {};
+java.util.ArrayList = function ArrayList(){
+    this.length = 0;
+    return this;  // 괜히 써 줌
+}
+
+//add 메소드
+java.util.ArrayList.prototype.add=function(p_arg){
+    this[this.length] = p_arg;
+    this.length++;  // 요게 증가해야 함!
+    return this;      // 메소드 체인닝 완썽!
+}
+
+java.util.ArrayList.prototype.get = function(p_index){
+    return this[p_index]; // 넘 쉬움
+    // return this      보통 읽기 메소드에는 메소드 체이닝을 구현하지 않음
+    // 왱? 값을 원하니깡!!!
+}
+
+java.util.ArrayList.prototype.remove = function(p_index){
+    // 힌토
+    for(let i=p_index; i<this.length-1; i++){
+        this[i] = this[i+1];    // 왼쪽으로 덮어쓰깅
+    }
+
+//    console.log("디버깅1:",this);
+    delete this[this.length-1];
+    this.length--;  // 1개 지웠으니, 갯수 줄임
+   // console.log("디버깅2:",this);
+   return this; // 메소드 체인닝
+}
+
+let myArrLst = new java.util.ArrayList();
+myArrLst.add("이수현").add("송지은").add("윤호연").remove(1).add("전혜수").add("박형준");
+
+//myArrLst.remove(1);  // index 번호가 연속되도록 해결하시옹!!
+
+console.log(myArrLst);
+//alert(myArrLst.get(1));
+
+</script>

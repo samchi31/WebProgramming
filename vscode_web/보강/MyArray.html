@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    function MyArray(){
+        this.length = 0;
+    }
+
+    MyArray.prototype.push = function(p_val){
+        this[this.length] = p_val;
+        this.length++;
+    }
+
+    //요기서 callback 한번 더 체킁
+    // 익숙해지면 편함(jQuery가 모두 이걸로 맹글어져 있음)
+    // callback 눈으로 잘 따라가면 훌륭한 사람
+    // jQuery는 약세지만, jQuery는 callback을 남겼음!
+    MyArray.prototype.forEach = function(p_cb){  // p_cb는 함수를 받아야 함
+        for(let i=0; i<this.length; i++){
+            p_cb(i,this[i]);  // 함수 호출
+        }
+
+    }
+
+    let arr1 = new MyArray();
+    for(let i=1; i<=5; i++){
+        arr1.push("안농"+i);
+    }
+    console.log(arr1);
+
+    arr1.forEach(function(p_index,p_val){
+        alert(p_index + " ===> " + p_val);
+    });
+
+
+</script>

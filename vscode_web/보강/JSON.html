@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <!-- 주의: form태그 안에 form태그 있으면 안됨! 찾기 힘듬-->
+    <form action="">
+        <input type="text" name="aaa1" value="a1"><br>
+        <input type="text" name="aaa2" value="a2"><br>
+        <input type="text" name="aaa3" value="a3"><br>
+        <textarea name="aaa5" cols="30" rows="10">멀티라인 글</textarea>
+        <div name="huk">메롱</div>
+        <input type="text" name="aaa4" value="a4"><br>
+    </form>
+    <form action="">
+        <input type="text" name="bbb1" value="b1"><br>
+        <input type="text" name="bbb2" value="b2"><br>
+        <input type="text" name="bbb3" value="b3"><br>
+        <input type="text" name="bbb4" value="b4"><br>
+    </form>
+</body>
+<script>
+    let myArr = {};      // 요거랑 배열이랑 잘 구분해서 받아들임!, 미루면 제자리
+    myArr["0"] = "R";    // 변수명은 숫자로 시작할 수 없다 위반, $,_
+    myArr["1"] = "O";    // .접근법으로는 안되나 []접근법으로는 가능
+    myArr["2"] = "Z"; 
+    myArr["3"] = "E"; 
+
+    console.log(myArr);
+
+   //console.log(document.forms[1]); // forms에 자동으로 form객체가 유사배열로 담김
+   //console.log(document.forms[0].elements);
+   //자동으로 사용자 입력태그 객체를 elements에 담아줌
+
+   /*
+   const form0Elems = document.forms[0].elements;
+   for(let i=0; i<form0Elems.length; i++){
+       console.log(form0Elems[i].name,"=", form0Elems[i].value);
+   }
+   */
+
+   /*
+   const elems = document.forms[0].elements;
+   for(let i=0; i<elems.length; i++){
+    //   console.log(elems["aaa1"].name,"=", elems["aaa1"].value);
+       console.log(elems["aaa"+(i+1)].name,"=", elems["aaa"+(i+1)].value);
+   }
+   */
+
+//JSON(JavaScript Object Notation) 자바스크립트 객체 표기법(엄칭 중요!)
+// json은 현재 웹에서(데이터전송포맷)뿐만 아니라 사방(설정파일, 
+// 객체지향DB 에서(저장 포맷) 사용됨 
+// 배열도 JSON의 한가지 형태로 받아들이는게 정신 건강에 좋음
+// 배열식 접근법을 꼭 이해를 해야함.
+
+/*
+let simple = {};  // 빈 객체 선언
+//simple.name = "전혜수";  // 속성 추가,아래 문법 보다 속도가 빨라, 이걸 선호
+let ppp ="huk";
+simple[ppp] = "안전혜수"; // 요따구 문법도 존재, 요게 꼭 필요한 상황이 자주 발생
+alert(simple.huk);     //  확인!
+alert(simple["huk"]);
+*/
+
+/*
+let name="fbi";
+
+let simple = {   // new Object()
+    aaa:"전혜수"  // aaa는 "aaa" 와 쓴 것과 같음, []을 썼을 때만 변수 처리 가능
+}
+
+alert(simple.fbi); //?
+alert(simple.name);
+*/
+</script>

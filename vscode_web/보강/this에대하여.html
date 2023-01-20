@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <input type="button"  mybutton value="눌러방방">
+</body>
+<script>
+    // 요즘 사용되는 테크닉(아는 사람만 앎)
+    const mButton = document.querySelector("[mybutton]");
+    function f_ck2(p_arg1){
+        console.log(this);
+        alert("나 눌렀닝?" + p_arg1);
+    }
+    mButton.addEventListener("click",f_ck2.bind(document,"선민카드")  );// 함수이름을 -> FP(Function Pointer)
+
+    //bind는 내부적으로 함수를 복사해서 매개변수를 넣은 함수포인터를 되돌려줌
+    //call과 문법이 같으니 헷갈리면 안됨
+    //쉽게 call은 함수를 실행시켜주고, bind는 함수포인터를 리턴(아직 실행안됨)해준다고 기억
+
+    //this(이것,나) 헷깔림
+    // 정리하면 전역변수 선언은 window객체의 속성을 선언하는 것과 같고
+    //         함수선언은 window객체의 메소드를 선언하는 것과 같음
+    // 함수지향언어 같지만, 알고보면 객체 지향 언어
+
+// 그래서 출현, call, apply, bind(현재는 엄칭 중요!) , this를 제어!
+function f_ck(p_arg1,p_arg2){  
+    console.log(this); //?
+    console.log(p_arg1, "    ",p_arg2);
+}
+
+//f_ck.call({name:"로젱"},"매개변수1","매개변수2");
+//apply는 call과 사용법이 똑같음, 단지 매개변수들을 배열에 담아서 한번에 줘야 함
+//f_ck.apply({name:"제닝",age:26},["매개변수1","매개변수2"]);
+
+//f_ck.call({name:"제닝",age:26},"매개변수 1개만");
+//f_ck.call(document,"aaa","bbb");
+
+
+
+/*
+let anotherObj = {name:"서빈"}; // 객체 1개 생성
+anotherObj.method1 = f_ck;     // 객체의 method1이 f_ck를 참조
+anotherObj.method1();           // f_ck 호출
+// 스크립트 개발자 커뮤니티에서 항의, this 거지 같당!, 머리 아프당, 네가 해봐랑!
+*/
+
+
+/*
+var merong = "흥치뿡";
+alert(window.merong);
+alert(merong);
+
+function f_ck(){  // 함수를 맹글었지만, 실제로는 window객체의 메소드를 만든 것임
+    console.log(this); //?
+}
+*/
+//alert(window.f_ck); // 누느로 화긴!
+//f_ck();
+
+</script>

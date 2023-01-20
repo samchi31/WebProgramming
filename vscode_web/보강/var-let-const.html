@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+</body>
+<script>
+    // 그럼 언제 const를 쓰는가?
+    // 보통 함수(function)나, HTML 페이지 내에서 항상 있는 element
+    // 최종적으로는 본인 감(느낌)을 키워야 함!
+
+    const myBody = document.querySelector("body");
+
+    const print = function(){
+        alert("메롱");
+    }
+
+   //변수 선언 var let const의 차이, let과 const는 es6(2015년 말)부터 지원
+   //그동안 마이크로소프트의 IE11에 묶여 못 쓰고 있었음!
+   
+    // let 삶의영역이 { 과 } 으로 결정됨, scope가 다른 언어들과 같음, 사용 권장
+    // var는 function 키워드에 의해서 결정됨,scope가 아주 특별함
+
+    const fbi="에프비아이";
+    //fbi="케이지비"; // 당근 에러
+
+    const kgb= ["메렁"];
+    kgb[1] = "헉"; //? 가능
+
+    let oneMore = {   // 박스도 바꾸려면 let으로 선언해야 함(var도 됨)
+        name:"찬영"
+    }
+
+    oneMore = {           //? 이건 안됨, 본드로 붙인 박스를 바꾸려 함
+        name:"박인수"
+    }
+
+    //oneMore.name = "안찬영" // OK?, 박스 안의 내용물을 바꾸는 건 OK
+
+    console.log(oneMore);
+
+    /*
+    function f_ck(){
+        var aaa = "10";
+    }
+
+    alert(aaa);
+*/
+/*
+   for(let i=1; i<10; i++){
+   }
+   alert("체크:"+i); //?10
+ */  
+</script>
