@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<meta charset="UTF-8" />
+<body>
+  <div id="disp"></div>
+  <input type="button" value="아작스콜1" onclick="f_ajax1()" />
+  <input type="button" value="아작스콜1" onclick="f_ajax2()" />
+</body>
+<script>
+  //Ajax(아작스, 에이잭스) 말이 필요 없음, 웹개발자에겐 밥줄!
+  // 요게 이상했던 사람들은 필히 외울 것(외우면 이해됨!)
+  // 아작스는 처음에 아무도 안 믿었음(비동기에 대한 신뢰가 부족)
+  // 2000년 초반에 비동기 ajax 등장(form 태그의 비효율성)
+
+  //Ajax 원본, 요건 손가락이 외워야 함!
+
+  // let xhr = new XMLHttpRequest(); //심부름꾼 아저씨 생성(나 대신 통신해줌)
+  // //xhr.open("메소드", "URL", "비동기 여부"); //심부름 시킬 내용 지정
+  // //동기 vs 비동기 : 동기는 순서대로 노는 것 비동기 따로 노는 것
+  // xhr.open("get", "./data.csv", "true"); //심부름 시킬 내용 지정
+  // xhr.send(); //시킨 일 하시옹
+  // // 심부름꾼 아저씨 이벤트 발생(연락, 진행여부)
+  // xhr.onreadystatechange = function() {
+  //     //모든 상태에 관심이 있는 건 아니고, 이기적인 나는 끝난 것만 관심!
+  //     if(xhr.readyState== 4 && xhr.status == 200) {//나 다했어요!//서버 코드도 확인
+  //             alert(xhr.responseText); //서버에서 받아온 결과는 responseText에 담겨 있음
+
+  //     }
+  // }
+
+  const disp = document.querySelector("#disp");
+
+  function f_ajax2() {
+    let xhr = new XMLHttpRequest();
+    xhr.open("get", "data.json", true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        console.log(xhr.responseText);
+        //객체로 변환해서 쓰는 이뉴는 문자열은 다루기가 힘들고
+        //객체는 다루기가 편하니까!
+        console.log(JSON.parse(xhr.responseText)); //문자열을 JS 객체로
+        //여기서 다시 받은 내용을 테이블로 출력해 보시오
+        let tblStr = "<table border=1>"
+            tblStr +="<tr><th>이름</th><th>"
+      }
+    }
+    xhr.send();
+  }
+
+  function f_ajax1() {
+    let xhr = new XMLHttpRequest(); //이걸 전역변수로 쓰지말고, 항상 함수안에서 지연변수로 사용할 것
+    //지역변수로 써야 다른 비동기 함수가 시킨 일과 충돌 나지 않음
+    //가끔 변수 아낀다고 전역변수로 사용해서 심부름꾼 아적씨가 하던 일을 안 하고 다른 일을 함
+    xhr.open("get", "data.csv", "true");
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        // alert(xhr.responseText);
+        //가져온 csv파일 내용을 #disp에 <table> 태그를 이용해 출력해 봐라
+        //주로 서버에서 받아온 값을 가지고, 화면(view)을 제어(만들고, 지우고, 수정 등)하게 됨
+
+        let content = xhr.responseText;
+        content = content.split("\n"); //엔터키로 자르기
+
+        let tblStr = "<table border=1>";
+        tblStr += "<tr><th>이름</th><th>나이</th><th>별명</th></tr>";
+        for (let i = 1; i < content.length; i++) {
+          tblStr += "<tr>";
+          let tds = content[i].split(",");
+          for (let j = 0; j < tds.length; j++) {
+            tblStr += "<td>" + tds[j] + "</td>";
+          }
+          tblStr += "</tr>";
+        }
+        tblStr += "</table>";
+        disp.innerHTML += tblStr;
+      }
+    };
+    xhr.send(); //보통 send를 onreadStatechage 뒤에다가 씀
+    //실행하고 이벤트 등록하면 이벤트를 놓칠 수 도 있어서, 이벤트 등록하고, 실행하는 순서로
+  }
+</script>
