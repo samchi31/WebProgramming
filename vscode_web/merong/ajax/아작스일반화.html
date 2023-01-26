@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+    //아작스 일반화 (DRY 원칙, Do not Repeat Yourself)
+
+    // 멋진 말로 boiler plate 코드라고 부름
+    /*
+    let xhr = new XMLHttpRequest();
+    xhr.open("메소드","URL",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status == 200){
+            console.log(xhr.responseText);
+            //통신 성공 했을 때 실행해야 할 코드
+        }
+    }
+    xhr.send();
+    */
+
+    // 네임스페이스 변수, 보통 빈 객체(빈 객체 아니여도 상관없음)를 많이 사용
+    
+    let $ ={}; // 변수명으로 쓸 수 있는 특수 문자 2갱, $ 와 _
+
+    // 1단계 눈에 보이는 대로 일반화, 매개변수 3개
+    // 매개변수를 1개로 묶음변수(json)로 보내는 게 유행!
+    $.ajax = function(p_setting){  // p_setting은 json으로 보낼것임(왜? 여러개 담을 거니깡)
+        let xhr = new XMLHttpRequest();
+        xhr.open(p_setting.method,p_setting.url,true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+               // console.log(xhr.responseText);
+                //통신 성공 했을 때 실행해야 할 코드
+                if(p_setting.dataType=="json"){
+                    p_setting.success(JSON.parse(xhr.responseText)); // 함수에 결과를 넘김
+                    return;
+                }
+                p_setting.success(xhr.responseText); // 함수에 결과를 넘김
+            }
+        }
+        xhr.send();
+    }
+
+// 오늘 지베 가기전에 AJAX 쭈욱 한번 보고 감당(적어도 눈만으로라동) 
+
+    $.ajax({   // 요렇게 해서 jQuery AJAX가 탄생!!
+        method:"get",
+        url:"data.json",
+        dataType:"json",
+        success:function(p_rslt){
+            console.log(p_rslt);
+        }
+    });
+
+
+    /*
+    ajax("get","data.csv",function(rslt){
+        console.log("메롱1",rslt);
+    });
+
+    ajax("get","data.json",function(rslt2){
+        console.log("메롱2",rslt2);
+    });
+
+    ajax("get","data.xml",function(rslt3){
+        console.log("메롱3",rslt3);
+    });
+    */
+</script>
