@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<script>
+    function jsonFlickrFeed(p_data){
+        console.log(p_data); // 누느로 확인!
+        //검색한 것만 보기 위해서 일단 비우깅
+        disp.innerHTML = "";
+
+        let imgs = p_data.items;
+        for(let i=0; i<imgs.length; i++){
+            console.log("누느로 화긴사살:",imgs[i].media.m);
+            // 이미지 맹글깅
+            let img = document.createElement("img"); // 메모리에 img 태그 생성
+            img.src = imgs[i].media.m;
+            // 문서(document)에 넣어야 눈에 보임
+            disp.appendChild(img);
+            
+        }
+
+    }
+</script>
+<!-- script src는 cross-origin에 상관없음(css도 마찬가징) 
+     JSONP는  CORS(Cross-Origin-Resource-Sharing) 정책 회피방법 중 1개
+-->
+</head>
+<body>
+    <h1>JSONP (JSON Padding)에 대해 알아보아용!</h1>
+    <img src="https://dummyimage.com/600x400/000/0011ff&text=Manse">
+    <img src="https://robohash.org/%EC%B0%AC%EC%98%81">
+     <input type="text" id="schText" value="">
+     <input type="button" value="서칭" id="schBtn"><hr>
+    <div id="disp"></div>
+<script>
+    const disp = document.querySelector("#disp"); //
+    const schText = document.querySelector("#schText");
+    const schBtn = document.querySelector("#schBtn");
+
+    const preUrl = "https://www.flickr.com/services/feeds/photos_public.gne?tags=";
+    const postUrl = "&format=json";
+
+    schBtn.onclick = ()=>{
+        let schUrl = preUrl + schText.value + postUrl;
+        //실제 요청은 script src로 해야 되어서 script태그를 맹글어야 함
+        let script = document.createElement("script");
+        script.src = schUrl;
+        document.head.appendChild(script);  // 화면에 투입, 그러면 스크립트가 실행됨
+    }
+
+
+
+    /* 기본적으로 cross-origin 아작스 요청은 보통 막혀있음(서버관리자가 풀어주지 않는 이상)
+    let xhr = new XMLHttpRequest();
+    xhr.open("get","https://www.flickr.com/services/feeds/photos_public.gne?tags=cat&format=json",true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState== 4 && xhr.status == 200){
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.send();
+    */
+</script>
+<script src="https://www.flickr.com/services/feeds/photos_public.gne?tags=dog&format=json"></script>
+</body>
+</html>

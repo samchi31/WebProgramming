@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<friends>
+    <friend>
+        <name>로제</name>
+        <age>26</age>
+        <alias>로지</alias>
+    </friend>
+    <friend>
+        <name>제니</name>
+        <age>27</age>
+        <alias>지금 제니?</alias>
+    </friend>
+    <friend>
+        <name>리사</name>
+        <age>26</age>
+        <alias>흥</alias>
+    </friend>
+</friends>

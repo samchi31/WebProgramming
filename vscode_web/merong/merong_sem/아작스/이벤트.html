@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <input type="button" id="mBtn1" value="눌러방"><br>
+    <input type="button" id="mBtn2" value="누르숑"><br>
+</body>
+<script>
+    const myBtn1 = document.querySelector("#mBtn1");
+    const myBtn2 = document.querySelector("#mBtn2");
+
+    //억지스러 예제인데, addEventListener 사용시 주의를 하지 않으면
+    //같은 코드가 여러번 반복 될 수 있음을 보임!
+    // on이벤트명 하고 addEventListenern 상황에 맞게 잘 써야 함!
+    // OK?
+    myBtn1.onclick = function(){
+        myBtn2.addEventListener("click",function(){
+            alert("메롱");
+        })
+    }
+
+  // 이벤트 사용시 꼭 주의! (의외의 복병)
+  // on이벤트명 vs addEventListener(나중 버젼 권장됨)  차이 꼭 인식!
+
+  /*
+  window.addEventListener("load",function(){
+    alert("메롱1");
+  });
+
+  window.addEventListener("load",function(){
+    alert("메롱2");
+  });
+ */
+  /*
+  window.onload = ()=>{
+    alert("메롱1");
+  }
+
+  window.onload = ()=>{
+    alert("메롱2");
+  }
+  */
+</script>

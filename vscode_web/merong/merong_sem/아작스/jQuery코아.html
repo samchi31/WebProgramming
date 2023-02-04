@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<body>
+    <div class="aaa">서범수</div>
+    <div class="aaa bbb">민경진</div>
+    <div class="aaa">장은호</div>
+    <div class="aaa">이현주</div>
+    <div class="aaa bbb">이선민</div>
+    <div class="aaa bbb">송지은</div>
+
+    <input type="text" name="myTxt" value="허근주"><br>
+    <input type="text" name="myTxt" value="양서연"><br>
+    <input type="text" name="myTxt" value="박형준"><br>
+    <input type="text" name="myTxt" value="임채리"><br>
+    <input type="text" name="myTxt" value="윤호연"><br>
+    <input type="text" name="myTxt" value="이수현"><br>
+
+    <input type="button" sBtn value="누르숑1">
+    <input type="button" value="누르숑2">
+    <input type="button" sBtn value="누르숑3">
+</body>
+<script>
+// 콜백 연습을 위해 jQuery 코아를 만들어봄당.
+// 실제 jQuery는 훨씬 더 복잡한데, 이해를 위해 필요한 것만 심플하게 뽑아서..
+
+
+//class를 쓸 것임,
+//jQuery는 선택된 element를 전부 자신의 속성으로 옮겨 담음
+//옮겨놔야 맘대로 조작하기 편하기 때문에, 대신 성능에 대한 손해는 감수
+// 결론 편리함을 얻고, 성능을 조금 내어줌
+
+//new를 없애주기 위한 함수
+
+//let factory;   // 전역변수 선언
+(function(){
+    let $ = function(p_sel){
+        return new MyDom(p_sel); // 생성해서 리턴
+    }
+
+    let MyDom = function(p_selector){
+        let elems = document.querySelectorAll(p_selector);
+        //위에 가져온 걸 옮겨 담음
+        this.length = elems.length; // 속성 length 선언
+        for(let i=0; i<this.length; i++){
+            this[i] = elems[i];
+        }
+        return this; // 명시적 표현(생략해도 상관없음)
+    }
+    window.$=$; // 전역변수 factory와 지역변수 factory를 연결(참조)
+
+    //MyDom.prototype을 밖에서 접근하도록 해야, 개발자들이 자신의 메소드(보통 플러그인)
+    //를 추가할수 있도록 결정
+    $.fn=MyDom.prototype; // 지역변수 $가 전역변수 $에 의해 참조되기 때문에 
+    // 즉각실행함수 밖에서도 $.fn으로 MyDom.prototype을 접근할 수 있음
+
+})();
+// 동적 메소드를 추가할 수 있음!
+// html,val,attr,css,prop
+$.fn.html = function(p_arg){  // innerHTML 속성을 편하게 다루는 jQuery 메소드
+    //1.매개변수가 안 넘어 왔을 때
+    if(!p_arg){  //  첫번째 element의  innerHTML을 리턴(읽기)
+        return this[0].innerHTML; // 읽기에는 보통 메소드 체인닝을 구현하지 않음
+    }
+    //2.매개변수가 string이 넘어 왔을 때
+    if(typeof(p_arg) == "string"){  // 전부 쓰깅
+        for(let i=0; i<this.length; i++){
+            this[i].innerHTML = p_arg;
+        }
+        return this;  // 메소드 체인닝을 위함
+    }
+    //3.매개변수가 function이 넘어 왔을 때, // 부분쓰깅(선택적 쓰기)
+    if(typeof(p_arg) == "function"){
+        for(let i=0; i<this.length; i++){
+            //call,apply,bind?(this를 강제로 세팅하는 메소드!)
+           this[i].innerHTML = p_arg.call(this[i],i,this[i].innerHTML);
+        }
+        return this;  // 메소드 체인닝을 위함
+    }
+}
+
+//사용자 입력태그의 value 속성만 편하게 다루는 메소드
+$.fn.val = function(p_arg){
+        //1.매개변수가 안 넘어 왔을 때
+    if(!p_arg){  //  첫번째 element의  innerHTML을 리턴(읽기)
+        return this[0].value; // 읽기에는 보통 메소드 체인닝을 구현하지 않음
+    }
+    //2.매개변수가 string이 넘어 왔을 때
+    if(typeof(p_arg) == "string"){  // 전부 쓰깅
+        for(let i=0; i<this.length; i++){
+            this[i].value = p_arg;
+        }
+        return this;  // 메소드 체인닝을 위함
+    }
+    //3.매개변수가 function이 넘어 왔을 때, // 부분쓰깅(선택적 쓰기)
+    if(typeof(p_arg) == "function"){
+        for(let i=0; i<this.length; i++){
+            //call,apply,bind?(this를 강제로 세팅하는 메소드!)
+           this[i].value = p_arg.call(this[i],i,this[i].value);
+        }
+        return this;  // 메소드 체인닝을 위함
+    }
+}
+
+//alert($("input[name=myTxt]").val()); // 읽기
+//$("input[name=myTxt]").val("박시윤");   // 전부쓰기
+$("input[name=myTxt]").val(function(p_index,p_val){   // 선택적 쓰기 작업
+    if(p_val == "이수현"){
+        console.log(this);// 무얼 가리키고 있는가? 요거이 중요!
+        this.style.fontSize = "2em";
+        this.style.backgroundColor= "black";
+        this.style.color="yellow";
+        return `${p_val} 맘만세`;
+    }
+    return p_val; // 조건에 해당하지 않는 것은 원래 값 리턴
+});
+
+
+//알고 보면 초 간단한 거
+$.fn.on = function(p_eventName, p_cb){
+    for(let i=0; i<this.length; i++){
+        this[i].addEventListener(p_eventName,p_cb); // 이벤트 등록!
+    }
+    return this; // 메소드 체인닝
+}
+
+$("[sBtn]").on("click",function(){
+    console.log("중요체킁: ", this);
+     alert("나 눌렀닝?");
+});
+
+// 눈이 잘 따라가야 됨!
+// 바쁘겠지만, 시간내서 attr이나 css 메소드를 맹글어보면 아주 좋음!
+//alert($(".bbb").html()); // 읽기
+//$(".bbb").html("<h1>전 혜수예용</h1>"); // 전부 쓰깅
+
+//jQuery는 내부를 이해하지 않고 쓰면, 성능과 메모리 모두 엄청 낭비되는 특성이 있음
+
+let $bbbs = $(".bbb"); // 찾은 걸 저장해 둬야 유리!
+
+$bbbs.html(function(p_index,p_html){
+    console.log("this체킁:",this);
+    //alert(p_index + " : " + p_html);// 콜백 아직 조금 낯설지용
+    if(p_index== 1){
+        return "<h1>"+p_html + "만만세</h1>";
+    }
+    return p_html; // 조건에 맞지 않는 건 원래 가진값 돌려주깅
+});
+
+$bbbs.html(function(p_index,p_html){
+    if(p_html== "민경진"){
+        return `<h1>${p_html}</h1>`;
+    }
+    return p_html;
+});
+
+//let check = new MyDom(".aaa");
+// jQuery $의 탄생!
+//let check = $(".aaa.bbb").html();  // new를 감추는 데 썽공!
+//console.log(check[1]);  // 누느로 화긴하는 게 중요
+
+</script>

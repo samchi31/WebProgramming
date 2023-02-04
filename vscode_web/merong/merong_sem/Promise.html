@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<script>
+//Promise(약속)를 모르면 옛날 사람!
+//미래에 어떡하장(지켜질수도 있고(resolve), 안 지켜질수도 있지용(reject))
+// 자바스크립트에서 비동기가 많이 사용되고, 비동기 처리에
+// 콜백함수(예를 들면 success)를 많이 사용하다 보니, 콜백 지옥이란 말이 탄생
+// 요걸 쪼메 편하게 보이게 만든 게 Promise
+// 처음에 미친듯이 낯설음. (처음에만, 3번 보면 그저 그러려니)
+
+const  Axios = {}; // 네임스페이스용 빈 객체(빈 객체 아니여도 상관없음, 본인 맘대로 객체이기만 하면 됨)
+
+// 객체에 메소드 추가
+Axios.get = function(p_url){
+    return new  Promise((res,rej)=>{  // Promise와의 첫 만남 - 아우 설레용~~
+        let xhr = new XMLHttpRequest();
+        xhr.open("get",p_url,true);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                res(xhr.responseText);
+            }
+        }
+        xhr.send();
+    });
+}
+
+// 요렇게 사용되는 스타일이 중요!
+// /로 시작하면 절대경로 
+Axios.get("/jsstudy/아작스/data.csv")
+     .then((p_rslt)=>{
+        console.log(p_rslt);
+     });
+
+
+Axios.get("/jsstudy/아작스/data.json").then((p_rslt)=>{
+        console.log(p_rslt);
+     });
+
+console.log("선민? ");  // 가장 먼저 찍힘 왜? 비동기니깡, 타이밍 생각이 중요~
+</script>
