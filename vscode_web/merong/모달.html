@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+<style>
+  #modal {  /* 시퀀스 상 순서를 유지하기 위해서 */
+    position: fixed;
+    width: 100%;
+    height:100%;
+    left:0px; top:0px;
+    background-color: rgba(0,0,0, 0.3);
+    display: none;
+  }
+  #content {
+    width: 30%;
+    height: 50vh;
+    margin: 20px auto;
+    background-color:pink ;
+  }
+</style>
+</head>
+<body>
+<div id="modal" onclick="f_modalClose()">
+  <div id="content">
+    <div style="text-align: right;">
+        <button onclick="f_modalClose()" style="font-size: 3em;">X</button>
+    </div>
+  </div>
+</div>  
+<div id="wrapper">
+  <h1>모달 모달 모달 맹글기</h1>  
+  <button  onclick="f_modalOpen()">모달 열깅</button>
+</div>
+<script>
+  const syModal = document.querySelector("#modal");
+  const f_modalOpen = ()=>{
+    syModal.style.display="block";
+  }
+  const f_modalClose = ()=>{
+    syModal.style.display="none";
+  }
+</script>
+</body>
+</html>
