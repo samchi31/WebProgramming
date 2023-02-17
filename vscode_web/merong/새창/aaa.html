@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <input type="text" name="sy1" value=""><br>
+  <input type="button" value="창열기" onclick="f_wopen()">
+  <input type="button" value="값바꾸깅" onclick="f_chg()">
+  <script>
+    let syChildWin=null;
+    const f_wopen = () =>{
+      syChildWin =window.open("bbb.html","시윤만만세","width=400,height=400,left=100,top=100"); // URL,name, 잡다옵션
+
+
+    }
+
+    const f_chg = () =>{
+      if(syChildWin){
+        syChildWin.document.querySelector("[name=merong]").value = document.querySelector("[name=sy1]").value;
+      }
+    }
+
+    function f_banner(pName) {
+        alert("제약사항이 많아용" + pName);
+    }
+  </script>
+</body>
+</html>
